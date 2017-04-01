@@ -10,9 +10,17 @@ import UIKit
 
 class SYShopTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    
+    static let reuseIdentifier = "ShopCell"
+    
+    // MARK: -
     
     @IBOutlet var productTitel: UILabel!
     @IBOutlet var productImage: UIImageView!
+    
+    // MARK: - Initialization
+
     
     override func awakeFromNib() {
         
@@ -31,6 +39,5 @@ class SYShopTableViewCell: UITableViewCell {
     func setupProductTitel() {
         self.productTitel.text = "test"
     }
-    
     
 }

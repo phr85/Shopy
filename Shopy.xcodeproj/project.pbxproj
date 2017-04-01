@@ -11,7 +11,7 @@
 		229E85A56B4951BACB533FD3 /* Pods_ShopyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9675A347B7076222023BFC /* Pods_ShopyUITests.framework */; };
 		A6E5686B9DF632ACB1CDA8AC /* Pods_Shopy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30E0069CE1E6D1A0E147D45 /* Pods_Shopy.framework */; };
 		AB14D74F1E8E55770040BC56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D74E1E8E55770040BC56 /* AppDelegate.swift */; };
-		AB14D7521E8E55770040BC56 /* Shopy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB14D7501E8E55770040BC56 /* Shopy.xcdatamodeld */; };
+		AB14D7521E8E55770040BC56 /* ShopyAppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB14D7501E8E55770040BC56 /* ShopyAppModel.xcdatamodeld */; };
 		AB14D7591E8E55770040BC56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB14D7571E8E55770040BC56 /* Main.storyboard */; };
 		AB14D75B1E8E55770040BC56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB14D75A1E8E55770040BC56 /* Assets.xcassets */; };
 		AB14D75E1E8E55770040BC56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB14D75C1E8E55770040BC56 /* LaunchScreen.storyboard */; };
@@ -21,6 +21,13 @@
 		AB14D78A1E8E5B960040BC56 /* SYShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D7881E8E5B960040BC56 /* SYShopTableViewCell.swift */; };
 		AB14D78B1E8E5B960040BC56 /* SYShopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB14D7891E8E5B960040BC56 /* SYShopTableViewCell.xib */; };
 		AB14D78F1E8E72CF0040BC56 /* SYBasketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D78E1E8E72CF0040BC56 /* SYBasketTableViewController.swift */; };
+		ABAD52AB1E900ABD00A58DAD /* index.json in Resources */ = {isa = PBXBuildFile; fileRef = ABAD52AA1E900ABD00A58DAD /* index.json */; };
+		ABAD52B01E900D1F00A58DAD /* SMArticle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */; };
+		ABAD52B11E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */; };
+		ABAD52B21E900D1F00A58DAD /* SMProducts+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */; };
+		ABAD52B31E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */; };
+		ABD433991E8FEA2E006A9457 /* SYBasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD433971E8FEA2E006A9457 /* SYBasketTableViewCell.swift */; };
+		ABD4339A1E8FEA2E006A9457 /* SYBasketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD433981E8FEA2E006A9457 /* SYBasketTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +55,7 @@
 		7F9675A347B7076222023BFC /* Pods_ShopyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB14D74B1E8E55770040BC56 /* Shopy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shopy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB14D74E1E8E55770040BC56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB14D7511E8E55770040BC56 /* Shopy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shopy.xcdatamodel; sourceTree = "<group>"; };
+		AB14D7511E8E55770040BC56 /* ShopyAppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShopyAppModel.xcdatamodel; sourceTree = "<group>"; };
 		AB14D7581E8E55770040BC56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB14D75A1E8E55770040BC56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB14D75D1E8E55770040BC56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +70,15 @@
 		AB14D7881E8E5B960040BC56 /* SYShopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYShopTableViewCell.swift; sourceTree = "<group>"; };
 		AB14D7891E8E5B960040BC56 /* SYShopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SYShopTableViewCell.xib; sourceTree = "<group>"; };
 		AB14D78E1E8E72CF0040BC56 /* SYBasketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBasketTableViewController.swift; sourceTree = "<group>"; };
+		ABAD52621E90002900A58DAD /* ShopyAppModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShopyAppModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		ABAD52AA1E900ABD00A58DAD /* index.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = index.json; sourceTree = "<group>"; };
+		ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMArticle+CoreDataClass.swift"; path = "../SMArticle+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMArticle+CoreDataProperties.swift"; path = "../SMArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMProducts+CoreDataClass.swift"; path = "../SMProducts+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMProducts+CoreDataProperties.swift"; path = "../SMProducts+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		ABAD52B41E901B8000A58DAD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		ABD433971E8FEA2E006A9457 /* SYBasketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBasketTableViewCell.swift; sourceTree = "<group>"; };
+		ABD433981E8FEA2E006A9457 /* SYBasketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SYBasketTableViewCell.xib; sourceTree = "<group>"; };
 		E66849210C4A978DD6B9F57C /* Pods-ShopyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShopyTests/Pods-ShopyTests.release.xcconfig"; sourceTree = "<group>"; };
 		EA3713CE1221F6673626506D /* Pods-Shopy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shopy/Pods-Shopy.release.xcconfig"; sourceTree = "<group>"; };
 		F30E0069CE1E6D1A0E147D45 /* Pods_Shopy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +139,7 @@
 		AB14D7421E8E55770040BC56 = {
 			isa = PBXGroup;
 			children = (
+				ABAD52B41E901B8000A58DAD /* README.md */,
 				AB14D74D1E8E55770040BC56 /* Shopy */,
 				AB14D7671E8E55770040BC56 /* ShopyTests */,
 				AB14D7721E8E55770040BC56 /* ShopyUITests */,
@@ -149,6 +166,7 @@
 				AB14D7821E8E58DE0040BC56 /* View */,
 				AB14D7831E8E58E40040BC56 /* Controller */,
 				AB14D75A1E8E55770040BC56 /* Assets.xcassets */,
+				ABAD52AA1E900ABD00A58DAD /* index.json */,
 				AB14D75F1E8E55770040BC56 /* Info.plist */,
 			);
 			path = Shopy;
@@ -175,7 +193,8 @@
 		AB14D7811E8E58D70040BC56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AB14D7501E8E55770040BC56 /* Shopy.xcdatamodeld */,
+				AB14D7501E8E55770040BC56 /* ShopyAppModel.xcdatamodeld */,
+				ABD4339B1E8FF2CE006A9457 /* Classes */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -204,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				AB14D7871E8E5B540040BC56 /* SYShopTableCell */,
+				ABD433961E8FEA0B006A9457 /* SYBasketTableViewCell */,
 			);
 			name = "Custom TableViewCells ";
 			sourceTree = "<group>";
@@ -215,6 +235,26 @@
 				AB14D7891E8E5B960040BC56 /* SYShopTableViewCell.xib */,
 			);
 			name = SYShopTableCell;
+			sourceTree = "<group>";
+		};
+		ABD433961E8FEA0B006A9457 /* SYBasketTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				ABD433971E8FEA2E006A9457 /* SYBasketTableViewCell.swift */,
+				ABD433981E8FEA2E006A9457 /* SYBasketTableViewCell.xib */,
+			);
+			name = SYBasketTableViewCell;
+			sourceTree = "<group>";
+		};
+		ABD4339B1E8FF2CE006A9457 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */,
+				ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */,
+				ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */,
+				ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +335,7 @@
 				TargetAttributes = {
 					AB14D74A1E8E55770040BC56 = {
 						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = VYEZJNCHTM;
 						ProvisioningStyle = Automatic;
 					};
 					AB14D7631E8E55770040BC56 = {
@@ -334,6 +375,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABAD52AB1E900ABD00A58DAD /* index.json in Resources */,
+				ABD4339A1E8FEA2E006A9457 /* SYBasketTableViewCell.xib in Resources */,
 				AB14D75E1E8E55770040BC56 /* LaunchScreen.storyboard in Resources */,
 				AB14D78B1E8E5B960040BC56 /* SYShopTableViewCell.xib in Resources */,
 				AB14D75B1E8E55770040BC56 /* Assets.xcassets in Resources */,
@@ -501,10 +544,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB14D78F1E8E72CF0040BC56 /* SYBasketTableViewController.swift in Sources */,
+				ABAD52B21E900D1F00A58DAD /* SMProducts+CoreDataClass.swift in Sources */,
+				ABAD52B01E900D1F00A58DAD /* SMArticle+CoreDataClass.swift in Sources */,
 				AB14D74F1E8E55770040BC56 /* AppDelegate.swift in Sources */,
-				AB14D7521E8E55770040BC56 /* Shopy.xcdatamodeld in Sources */,
+				AB14D7521E8E55770040BC56 /* ShopyAppModel.xcdatamodeld in Sources */,
+				ABAD52B31E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift in Sources */,
+				ABAD52B11E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift in Sources */,
 				AB14D78A1E8E5B960040BC56 /* SYShopTableViewCell.swift in Sources */,
 				AB14D7851E8E5AE40040BC56 /* SYShopTableViewController.swift in Sources */,
+				ABD433991E8FEA2E006A9457 /* SYBasketTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,7 +648,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -645,7 +693,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -659,6 +707,7 @@
 			baseConfigurationReference = 110A1734C4D1A7C6D38C29F8 /* Pods-Shopy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VYEZJNCHTM;
 				INFOPLIST_FILE = Shopy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.treeinspired.Shopy;
@@ -673,6 +722,7 @@
 			baseConfigurationReference = EA3713CE1221F6673626506D /* Pods-Shopy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VYEZJNCHTM;
 				INFOPLIST_FILE = Shopy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.treeinspired.Shopy;
@@ -782,13 +832,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		AB14D7501E8E55770040BC56 /* Shopy.xcdatamodeld */ = {
+		AB14D7501E8E55770040BC56 /* ShopyAppModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				AB14D7511E8E55770040BC56 /* Shopy.xcdatamodel */,
+				ABAD52621E90002900A58DAD /* ShopyAppModel 2.xcdatamodel */,
+				AB14D7511E8E55770040BC56 /* ShopyAppModel.xcdatamodel */,
 			);
-			currentVersion = AB14D7511E8E55770040BC56 /* Shopy.xcdatamodel */;
-			path = Shopy.xcdatamodeld;
+			currentVersion = ABAD52621E90002900A58DAD /* ShopyAppModel 2.xcdatamodel */;
+			path = ShopyAppModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

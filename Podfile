@@ -6,7 +6,11 @@ target 'Shopy' do
   use_frameworks!
 
   # Pods for Shopy
-  pod 'DATAStack', '~> 6'
+  pod 'Sync', '~> 2'
+  pod 'DATASource', '~> 6'
+  pod 'SwiftyJSON',  :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+  pod 'EZLoadingActivity' 
+
 
   target 'ShopyTests' do
     inherit! :search_paths

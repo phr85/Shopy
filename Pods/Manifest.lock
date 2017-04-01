@@ -1,12 +1,36 @@
 PODS:
-  - DATAStack (6.2.0)
+  - DATASource (6.1.5)
+  - DATAStack (7.0.1)
+  - EZLoadingActivity (1.01)
+  - SwiftyJSON (3.1.4)
+  - Sync (2.7.0):
+    - DATAStack (~> 7.0.1)
+    - SYNCPropertyMapper (~> 5.2.0)
+  - SYNCPropertyMapper (5.2.0)
 
 DEPENDENCIES:
-  - DATAStack (~> 6)
+  - DATASource (~> 6)
+  - EZLoadingActivity
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - Sync (~> 2)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 74cda0fa5ae0be109b60a7dad396bcf92a9d5a13
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  DATAStack: 06d6a00f4fe84f11afdae2a6f47558f1087000e5
+  DATASource: 52b86cfff6c7ac3db45192c01f7839c7473576c3
+  DATAStack: 9ca4ba8e8e4f389f1593ad3178d7a4d4df69d648
+  EZLoadingActivity: edd7e387e5197b116ce2cccb3fd747ababc2a510
+  SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
+  Sync: b02ce41aa8080049a2932fd7342fe189edb2298a
+  SYNCPropertyMapper: b3157f5183285c8a25ba23877b95a06ec2547e73
 
-PODFILE CHECKSUM: 2430d614da96986c3a0d55df9905fde07b5ea540
+PODFILE CHECKSUM: c0f7fde95af1381edb5c346c13c7bc118f366b1a
 
 COCOAPODS: 1.2.0.beta.1

@@ -9,137 +9,54 @@
 import UIKit
 import CoreData
 import DATAStack
+import DATASource
 
 class SYBasketTableViewController: UITableViewController {
 
-    let dataStack = DATAStack(modelName:"Shopy")
-
-    private let persistentContainer = NSPersistentContainer(name: "Quotes")
+    // MARK: - Properties
+    
+    let dataStack = (UIApplication.shared.delegate as! AppDelegate).dataStack
+    
+    // MARK: - Initialization
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        persistentContainer.loadPersistentStores { (persistentStoreDescription, error) in
-            if let error = error {
-                print("Unable to Load Persistent Store")
-                print("\(error), \(error.localizedDescription)")
-                
-            } else {
-                self.setupView()
-            }
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        setup()
     }
 
     // MARK: - Setup
 
+    private func setup() {
+        setupBasketTableViewCell()
+        setupTableView()
+    }
     
-    private func setupView() {
-        setupMessageLabel()
+    private func setupBasketTableViewCell() {
+        tableView.register(UINib(nibName: "SYBasketTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: SYShopTableViewCell.reuseIdentifier)
+    }
+    
+    private func setupTableView() {
+        self.tableView.dataSource = self.dataSource
+    }
+    
+    // MARK: - Table view data source / DATASource
+    
+    lazy var dataSource: DATASource = {
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
-        updateView()
-    }
-    
-    // MARK: -
-    
-    private func setupMessageLabel() {
-        messageLabel.text = "You don't have any quotes yet."
-    }
-    
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: SYShopTableViewCell.reuseIdentifier,
+                                    fetchRequest: request, mainContext: self.dataStack.mainContext,
+                                    configuration: { cell, item, indexPath in
+            cell.textLabel?.text = item.value(forKey: "title") as? String
+        })
         
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+        return dataSource
+    }()
+    
 }
 
 
-extension SYBasketTableViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return quotes.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: QuoteTableViewCell.reuseIdentifier, for: indexPath) as? QuoteTableViewCell else {
-            fatalError("Unexpected Index Path")
-        }
-        
-        // Fetch Quote
-        let quote = quotes[indexPath.row]
-        
-        // Configure Cell
-        cell.authorLabel.text = quote.author
-        cell.contentsLabel.text = quote.contents
-        
-        return cell
-    }
-    
-}
+

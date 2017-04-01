@@ -9,39 +9,92 @@
 import UIKit
 import CoreData
 import DATAStack
+import DATASource
+import Sync
+import SwiftyJSON
+
 
 class SYShopTableViewController: UITableViewController {
 
-    var dataStack: DATAStack = {
-        let dataStack = DATAStack(modelName: "Shopy")
-        
-        return dataStack
-    }()
+    // MARK: - Properties
     
-
+    let dataStack = (UIApplication.shared.delegate as! AppDelegate).dataStack
+    
+    // MARK: - Initialization
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         setup()
     }
-
     
     // MARK: - Setup
-
-    func setup() {
-        
+    
+    private func setup() {
         setupShopTableViewCell()
+        setupTableView()
+        setupImportData()
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    private func setupImportData() {
+        
+        
+//        DispatchQueue.main.async {
+//            EZLoadingActivity.hide()
+//            EZLoadingActivity.show(NSLocalizedString("Loading Products Metadata", comment: ""), disableUI: true)
+//        }
 
-    func setupShopTableViewCell() {
+        let urlString = "https://api.treeinspired.com/shopy/index.json"
+        if let url = URL(string: urlString) {
+            if let data = try? Data(contentsOf: url, options: []) {
+                let appDelegate =
+                    UIApplication.shared.delegate as! AppDelegate
+                let jsonRoot = JSON(data: data)
+                let json = try! JSONSerialization.jsonObject(with: jsonRoot.rawData(), options: []) as! [[String: Any]]
+                Sync.changes(json, inEntityNamed: "SMProducts", dataStack: appDelegate.dataStack) { error in
+                    if let errorDes = error?.localizedDescription {
+                        print(errorDes)
+                    }
+                }
+            }
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    private func setupShopTableViewCell() {
         tableView.register(UINib(nibName: "SYShopTableViewCell", bundle: nil),
-                           forCellReuseIdentifier: "SYShopTableViewCell")
+                           forCellReuseIdentifier: SYShopTableViewCell.reuseIdentifier)
+    }
+    
+    private func setupTableView() {
+        self.tableView.dataSource = self.dataSource
+    }
+    
+    // MARK: - Table view data source / DATASource
+    
+    lazy var dataSource: DATASource = {
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMProducts")
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: SYShopTableViewCell.reuseIdentifier,
+                                    fetchRequest: request, mainContext: self.dataStack.mainContext,
+                                    configuration: { cell, item, indexPath in
+                                        let shopCel: SYShopTableViewCell = cell as! SYShopTableViewCell
+                                        shopCel.productTitel?.text = item.value(forKey: "title") as? String
+        })
+        
+        return dataSource
+    }()
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
     }
     
     // MARK: - Actions
@@ -49,87 +102,13 @@ class SYShopTableViewController: UITableViewController {
     @IBAction func addProductToBasket(sender: UIButton) {
         
         self.dataStack.performInNewBackgroundContext { backgroundContext in
-            let entity = NSEntityDescription.entity(forEntityName: "BasketItem", in: backgroundContext)!
+            let entity = NSEntityDescription.entity(forEntityName: "SMArticle", in: backgroundContext)!
             let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
-            object.setValue("Background", forKey: "name")
+            object.setValue("Background", forKey: "title")
             object.setValue(2.5, forKey: "price")
             object.setValue(1111, forKey: "productID")
             try! backgroundContext.save()
         }
     }
-    
-    
-    
-    // MARK: - Table view data source & delegate
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SYShopTableViewCell", for: indexPath)
-
-        // Configure the cell...
-
-        
-        
-        return cell
-    }
-
-    
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
