@@ -1,0 +1,6 @@
+framework module Pods_ShopyUITests {
+  umbrella header "Pods-ShopyUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
