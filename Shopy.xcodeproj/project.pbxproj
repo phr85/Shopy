@@ -26,6 +26,7 @@
 		ABAD52B11E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */; };
 		ABAD52B21E900D1F00A58DAD /* SMProducts+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */; };
 		ABAD52B31E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */; };
+		ABAD52B71E9031D500A58DAD /* SYCheckoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52B61E9031D500A58DAD /* SYCheckoutTableViewController.swift */; };
 		ABD433991E8FEA2E006A9457 /* SYBasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD433971E8FEA2E006A9457 /* SYBasketTableViewCell.swift */; };
 		ABD4339A1E8FEA2E006A9457 /* SYBasketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD433981E8FEA2E006A9457 /* SYBasketTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMProducts+CoreDataClass.swift"; path = "../SMProducts+CoreDataClass.swift"; sourceTree = "<group>"; };
 		ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMProducts+CoreDataProperties.swift"; path = "../SMProducts+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ABAD52B41E901B8000A58DAD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		ABAD52B61E9031D500A58DAD /* SYCheckoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYCheckoutTableViewController.swift; sourceTree = "<group>"; };
 		ABD433971E8FEA2E006A9457 /* SYBasketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBasketTableViewCell.swift; sourceTree = "<group>"; };
 		ABD433981E8FEA2E006A9457 /* SYBasketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SYBasketTableViewCell.xib; sourceTree = "<group>"; };
 		E66849210C4A978DD6B9F57C /* Pods-ShopyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShopyTests/Pods-ShopyTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				AB14D74E1E8E55770040BC56 /* AppDelegate.swift */,
 				AB14D7841E8E5AE40040BC56 /* SYShopTableViewController.swift */,
 				AB14D78E1E8E72CF0040BC56 /* SYBasketTableViewController.swift */,
+				ABAD52B61E9031D500A58DAD /* SYCheckoutTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				ABAD52B21E900D1F00A58DAD /* SMProducts+CoreDataClass.swift in Sources */,
 				ABAD52B01E900D1F00A58DAD /* SMArticle+CoreDataClass.swift in Sources */,
 				AB14D74F1E8E55770040BC56 /* AppDelegate.swift in Sources */,
+				ABAD52B71E9031D500A58DAD /* SYCheckoutTableViewController.swift in Sources */,
 				AB14D7521E8E55770040BC56 /* ShopyAppModel.xcdatamodeld in Sources */,
 				ABAD52B31E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift in Sources */,
 				ABAD52B11E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GMStepper
 
 class SYShopTableViewCell: UITableViewCell {
 
@@ -16,14 +17,13 @@ class SYShopTableViewCell: UITableViewCell {
     
     // MARK: -
     
-    @IBOutlet var productTitel: UILabel!
-    @IBOutlet var productImage: UIImageView!
+    @IBOutlet weak var productTitel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var stepperButton: GMStepper!
     
     // MARK: - Initialization
-
     
     override func awakeFromNib() {
-        
         super.awakeFromNib()
         setup()
     }
@@ -31,13 +31,7 @@ class SYShopTableViewCell: UITableViewCell {
     //MARK: - Setup
     
     func setup() {
-        
         self.selectionStyle = .none
-        setupProductTitel()
-    }
-    
-    func setupProductTitel() {
-        self.productTitel.text = "test"
     }
     
 }

@@ -16,9 +16,9 @@ extension SMArticle {
         return NSFetchRequest<SMArticle>(entityName: "SMArticle")
     }
 
-    @NSManaged public var itemCount: String?
+    @NSManaged public var itemCount: Double
     @NSManaged public var title: String?
     @NSManaged public var price: String?
-    @NSManaged public var id: String?
+    @NSManaged public var id: String
 
 }

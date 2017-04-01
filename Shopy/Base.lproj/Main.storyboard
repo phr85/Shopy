@@ -115,7 +115,14 @@
                             <outlet property="delegate" destination="6pp-ht-fJK" id="Pxr-Ls-2OY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="KKn-pZ-Cw8"/>
+                    <navigationItem key="navigationItem" id="KKn-pZ-Cw8">
+                        <barButtonItem key="leftBarButtonItem" title="Empty" id="P6z-QL-0HU">
+                            <connections>
+                                <action selector="emptyBasketWithSender:" destination="6pp-ht-fJK" id="FPh-eY-Jld"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Checkout" style="done" id="Qdc-Cc-Myo"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8QP-gJ-mNE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

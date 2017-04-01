@@ -10,7 +10,7 @@ target 'Shopy' do
   pod 'DATASource', '~> 6'
   pod 'SwiftyJSON',  :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
   pod 'EZLoadingActivity' 
-
+  pod 'GMStepper'
 
   target 'ShopyTests' do
     inherit! :search_paths

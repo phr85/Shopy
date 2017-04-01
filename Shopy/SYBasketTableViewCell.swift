@@ -16,14 +16,14 @@ class SYBasketTableViewCell: UITableViewCell {
     
     // MARK: -
     
-    @IBOutlet var productTitel: UILabel!
-    @IBOutlet var productImage: UIImageView!
+//    @IBOutlet weak var productTitel: UILabel!
+//    @IBOutlet weak var productCountAndPrice: UILabel!
+    
     
     // MARK: - Initialization
     
     
     override func awakeFromNib() {
-        
         super.awakeFromNib()
         setup()
     }
@@ -31,13 +31,7 @@ class SYBasketTableViewCell: UITableViewCell {
     //MARK: - Setup
     
     func setup() {
-        
         self.selectionStyle = .none
-        setupProductTitel()
-    }
-    
-    func setupProductTitel() {
-        self.productTitel.text = "test"
     }
     
 }

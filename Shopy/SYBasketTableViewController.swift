@@ -41,6 +41,23 @@ class SYBasketTableViewController: UITableViewController {
         self.tableView.dataSource = self.dataSource
     }
     
+    // MARK: - Actions
+    
+    @IBAction func emptyBasket(sender: UIBarButtonItem) {
+        self.dataStack.performInNewBackgroundContext { backgroundContext in
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do {
+                try backgroundContext.execute(batchDeleteRequest)
+            } catch {
+            }
+            try! backgroundContext.save()
+            DispatchQueue.main.async {
+                self.dataSource.fetch()
+            }
+        }
+    }
+    
     // MARK: - Table view data source / DATASource
     
     lazy var dataSource: DATASource = {
@@ -51,10 +68,19 @@ class SYBasketTableViewController: UITableViewController {
                                     fetchRequest: request, mainContext: self.dataStack.mainContext,
                                     configuration: { cell, item, indexPath in
             cell.textLabel?.text = item.value(forKey: "title") as? String
+            cell.detailTextLabel?.text = item.value(forKey: "title") as? String
+                                        cell.detailTextLabel?.text =
+                                            String(format: "$ %@ for %.0f Items",
+                                                   (item.value(forKey: "price") as? String)!,
+                                                   (item.value(forKey: "itemCount") as? Double)!)
         })
         
         return dataSource
     }()
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
     
 }
 

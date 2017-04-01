@@ -19,6 +19,6 @@ extension SMProducts {
     @NSManaged public var title: String?
     @NSManaged public var price: String?
     @NSManaged public var unit: String?
-    @NSManaged public var productID: String?
+    @NSManaged public var id: String
 
 }

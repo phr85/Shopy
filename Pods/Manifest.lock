@@ -2,6 +2,7 @@ PODS:
   - DATASource (6.1.5)
   - DATAStack (7.0.1)
   - EZLoadingActivity (1.01)
+  - GMStepper (2.0.0)
   - SwiftyJSON (3.1.4)
   - Sync (2.7.0):
     - DATAStack (~> 7.0.1)
@@ -11,6 +12,7 @@ PODS:
 DEPENDENCIES:
   - DATASource (~> 6)
   - EZLoadingActivity
+  - GMStepper
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - Sync (~> 2)
 
@@ -27,10 +29,11 @@ SPEC CHECKSUMS:
   DATASource: 52b86cfff6c7ac3db45192c01f7839c7473576c3
   DATAStack: 9ca4ba8e8e4f389f1593ad3178d7a4d4df69d648
   EZLoadingActivity: edd7e387e5197b116ce2cccb3fd747ababc2a510
+  GMStepper: 6aff0c881afac2f432e5c9b0df71e44e14110a06
   SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
   Sync: b02ce41aa8080049a2932fd7342fe189edb2298a
   SYNCPropertyMapper: b3157f5183285c8a25ba23877b95a06ec2547e73
 
-PODFILE CHECKSUM: c0f7fde95af1381edb5c346c13c7bc118f366b1a
+PODFILE CHECKSUM: aadeae0e74ec42281a064e83af5b20861d6f0f64
 
 COCOAPODS: 1.2.0.beta.1

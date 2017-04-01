@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     let dataStack = DATAStack(modelName:"ShopyAppModel")
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         return true
     }
 

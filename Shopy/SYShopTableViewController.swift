@@ -13,6 +13,7 @@ import DATASource
 import Sync
 import SwiftyJSON
 import EZLoadingActivity
+import GMStepper
 
 
 class SYShopTableViewController: UITableViewController {
@@ -44,7 +45,8 @@ class SYShopTableViewController: UITableViewController {
                 let appDelegate =
                     UIApplication.shared.delegate as! AppDelegate
                 let jsonRoot = JSON(data: data)
-                let json = try! JSONSerialization.jsonObject(with: jsonRoot.rawData(), options: []) as! [[String: Any]]
+                let json = try! JSONSerialization.jsonObject(with: jsonRoot.rawData(), options: [])
+                    as! [[String: Any]]
                 Sync.changes(json, inEntityNamed: "SMProducts", dataStack: appDelegate.dataStack) { error in
                     if let errorDes = error?.localizedDescription {
                         print(errorDes)
@@ -64,6 +66,24 @@ class SYShopTableViewController: UITableViewController {
         self.tableView.dataSource = self.dataSource
     }
     
+    // MARK: - Actions
+    
+    @IBAction func addProductToBasket(sender: GMStepper) {
+        let stepperIndexPath = IndexPath.init(row: sender.tag, section: 0)
+        let item: SMProducts = self.dataSource.object(stepperIndexPath) as! SMProducts
+        self.dataStack.performInNewBackgroundContext { backgroundContext in
+            let entity = NSEntityDescription.entity(forEntityName: "SMArticle", in: backgroundContext)!
+            let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
+            object.setValue(item.title, forKey: "title")
+            object.setValue(item.price, forKey: "price")
+            object.setValue(sender.stepValue, forKey: "itemCount")
+            object.setValue(item.id, forKey: "id")
+
+//            object.setValue(sender.stepValue, forKey: "itemCount")
+            try! backgroundContext.save()
+        }
+    }
+    
     // MARK: - Table view data source / DATASource
     
     lazy var dataSource: DATASource = {
@@ -73,28 +93,20 @@ class SYShopTableViewController: UITableViewController {
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: SYShopTableViewCell.reuseIdentifier,
                                     fetchRequest: request, mainContext: self.dataStack.mainContext,
                                     configuration: { cell, item, indexPath in
-                                        let shopCel: SYShopTableViewCell = cell as! SYShopTableViewCell
-                                        shopCel.productTitel?.text = item.value(forKey: "title") as? String
+                                        let shopCell: SYShopTableViewCell = cell as! SYShopTableViewCell
+                                        shopCell.stepperButton.tag = indexPath.row
+                                        shopCell.productTitel?.text = item.value(forKey: "title") as? String
+                                        shopCell.priceLabel?.text =
+                                            String(format: "$ %@ per %@",
+                                                   (item.value(forKey: "price") as? String)!,
+                                                   (item.value(forKey: "unit") as? String)!)
         })
         
         return dataSource
     }()
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction func addProductToBasket(sender: UIButton) {
-        self.dataStack.performInNewBackgroundContext { backgroundContext in
-            let entity = NSEntityDescription.entity(forEntityName: "SMArticle", in: backgroundContext)!
-            let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
-            object.setValue("Background", forKey: "title")
-            object.setValue("2.5", forKey: "price")
-            object.setValue("1111", forKey: "id")
-            try! backgroundContext.save()
-        }
+        return 68
     }
 
 }
