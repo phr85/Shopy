@@ -12,6 +12,7 @@ import DATAStack
 import DATASource
 import Sync
 import SwiftyJSON
+import EZLoadingActivity
 
 
 class SYShopTableViewController: UITableViewController {
@@ -35,21 +36,8 @@ class SYShopTableViewController: UITableViewController {
         setupImportData()
     }
     
-    
-    
-    
-    
-    
-    
-    
     private func setupImportData() {
-        
-        
-//        DispatchQueue.main.async {
-//            EZLoadingActivity.hide()
-//            EZLoadingActivity.show(NSLocalizedString("Loading Products Metadata", comment: ""), disableUI: true)
-//        }
-
+        EZLoadingActivity.show(NSLocalizedString("Loading Products", comment: ""), disableUI: true)
         let urlString = "https://api.treeinspired.com/shopy/index.json"
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url, options: []) {
@@ -64,8 +52,7 @@ class SYShopTableViewController: UITableViewController {
                 }
             }
         }
-        
-        self.tableView.reloadData()
+        EZLoadingActivity.hide()
     }
     
     private func setupShopTableViewCell() {
@@ -100,13 +87,12 @@ class SYShopTableViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func addProductToBasket(sender: UIButton) {
-        
         self.dataStack.performInNewBackgroundContext { backgroundContext in
             let entity = NSEntityDescription.entity(forEntityName: "SMArticle", in: backgroundContext)!
             let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
             object.setValue("Background", forKey: "title")
-            object.setValue(2.5, forKey: "price")
-            object.setValue(1111, forKey: "productID")
+            object.setValue("2.5", forKey: "price")
+            object.setValue("1111", forKey: "id")
             try! backgroundContext.save()
         }
     }
