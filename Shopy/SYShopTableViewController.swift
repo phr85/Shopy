@@ -69,21 +69,6 @@ class SYShopTableViewController: UITableViewController {
     
     // MARK: - Actions
     
-    @IBAction func emptyBasket(sender: UIBarButtonItem) {
-        self.dataStack.performInNewBackgroundContext { backgroundContext in
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
-            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-            do {
-                try backgroundContext.execute(batchDeleteRequest)
-            } catch {
-            }
-            try! backgroundContext.save()
-            DispatchQueue.main.async {
-                self.dataSource.fetch()
-            }
-        }
-    }
-    
     @IBAction func addProductToBasket(sender: GMStepper) {
         let stepperIndexPath = IndexPath.init(row: sender.tag, section: 0)
         let item: SMProducts = self.dataSource.object(stepperIndexPath) as! SMProducts
@@ -107,8 +92,10 @@ class SYShopTableViewController: UITableViewController {
                 object.setValue(item.id, forKey: "id")
             }
             try! backgroundContext.save()
+            DispatchQueue.main.async {
+                self.appDelegate.updateBasketBadge()
+            }
         }
-        appDelegate.updateBasketBadge()
     }
     
     // MARK: - Table view data source / DATASource
@@ -124,7 +111,7 @@ class SYShopTableViewController: UITableViewController {
                                         shopCell.stepperButton.tag = indexPath.row
                                         shopCell.productTitel?.text = item.value(forKey: "title") as? String
                                         shopCell.priceLabel?.text =
-                                            String(format: "$ %.2f per %@",
+                                            String(format: "USD %.2f per %@",
                                                    (item.value(forKey: "price") as? Float)!,
                                                    (item.value(forKey: "unit") as? String)!)
         })

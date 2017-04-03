@@ -87,7 +87,10 @@ class SYBasketTableViewController: UITableViewController {
                                          numberOfItems: item.value(forKey: "itemCount") as! Int,
                                          exchangeRate: 1.0)
             cell.detailTextLabel?.text =
-                String(format: "USD %.2f for %i Items", totalItemPrice, (item.value(forKey: "itemCount") as? Int)!)
+                String(format: "USD %.2f for %i %@s",
+                       totalItemPrice,
+                       (item.value(forKey: "itemCount") as? Int)!,
+                       (item.value(forKey: "unit") as? String)!)
         })
         
         return dataSource
