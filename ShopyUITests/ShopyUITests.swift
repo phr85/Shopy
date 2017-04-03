@@ -15,7 +15,7 @@ class ShopyUITests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        continueAfterFailure = true
+        continueAfterFailure = false
         XCUIApplication().launch()
     }
     
@@ -73,6 +73,10 @@ class ShopyUITests: XCTestCase {
         
         XCTAssert(XCUIApplication().staticTexts["Total Price: USD 6.23"].exists)
         XCUIApplication().toolbars.buttons["Order Now"].tap()
+        
+        app.navigationBars["Shop"].tap()
+        app.navigationBars["Basket"].tap()
+        testIsBasketClear()
     }
     
     func testBasketTotalPriceInEUR() {
@@ -83,11 +87,11 @@ class ShopyUITests: XCTestCase {
         tablesShop.cells.containing(.staticText, identifier:"Milk").buttons["+"].tap()
         tablesShop.cells.containing(.staticText, identifier:"Beans").buttons["+"].tap()
         
-        
-        
         app.tabBars.buttons["Basket"].tap()
         app.navigationBars["Basket"].buttons["Checkout"].tap()
         
+//        app.
+//        SYCheckoutTableViewController
         
         let table = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .table).element
         table.swipeUp()

@@ -148,7 +148,7 @@ class SYCheckoutTableViewController: UIViewController {
                                             self.displayTotalPriceLabel()
                                         }
                                         cell.detailTextLabel?.text =
-                                            String(format: "%@ %f for %i Items",
+                                            String(format: "%@ %.2f for %i Items",
                                                    self.selectedCurrency,
                                                    convertedPrice,
                                                    (item.value(forKey: "itemCount") as? Int)!)
