@@ -44,6 +44,7 @@ class SYBasketTableViewController: UITableViewController {
     
     private func setupTableView() {
         self.tableView.dataSource = self.dataSource
+        self.tableView.delegate = self
     }
     
     // MARK: - Actions
@@ -76,7 +77,6 @@ class SYBasketTableViewController: UITableViewController {
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: SYShopTableViewCell.reuseIdentifier,
                                     fetchRequest: request, mainContext: self.dataStack.mainContext,
                                     configuration: { cell, item, indexPath in
@@ -99,6 +99,35 @@ class SYBasketTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
+
+    func dataSource(dataSource: DATASource, tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let shareAction  = UITableViewRowAction(style: .normal, title: "Share") { (rowAction, indexPath) in
+//            print("Share Button tapped. Row item value = \(self.itemsToLoad[indexPath.row])")
+            
+//            self.displayShareSheet(indexPath)
+        }
+        let deleteAction  = UITableViewRowAction(style: .default, title: "Delete") { (rowAction, indexPath) in
+//            print("Delete Button tapped. Row item value = \(self.itemsToLoad[indexPath.row])")
+        }
+//        shareAction.backgroundColor = UIColor.greenColor()
+        return [shareAction,deleteAction]
+    }
+    
+//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+//            let item = self.dataSource.object(indexPath)
+//            self.dataStack.performInNewBackgroundContext { backgroundContext in
+//                backgroundContext.delete(item!)
+//                try! backgroundContext.save()
+//            }
+//        }
+//        
+//        return [delete]
+//    }
     
 }
 

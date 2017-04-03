@@ -20,10 +20,12 @@ class SYCheckoutTableViewController: UIViewController {
     let pickerViewDataSourceAndDelegate: UIPickerViewDelegate = PickerDataSourceAndDelegate()
     var selectedCurrency = "USD"
     var exchangeRate: Float = 1.0
+    var totalPrice: Float = 0.0
     
     // MARK: -
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var totalPriceLabel: UILabel!
     
     // MARK: - Initialization
     
@@ -69,7 +71,6 @@ class SYCheckoutTableViewController: UIViewController {
             }
             try! backgroundContext.save()
             DispatchQueue.main.async {
-                self.dataSource.fetch()
                 self.dismiss(animated: true, completion: nil)
             }
         }
@@ -88,6 +89,7 @@ class SYCheckoutTableViewController: UIViewController {
                 self.selectedCurrency = self.pickerViewDataSourceAndDelegate.pickerView!(
                     pickerView, titleForRow: pickerView.selectedRow(inComponent: 0), forComponent: 0)!
                 self.exchangeRate = self.getExchangeRate()
+                self.dataSource.fetch()
                 self.tableView.reloadData()
             }
         }
@@ -122,11 +124,16 @@ class SYCheckoutTableViewController: UIViewController {
         return 1.0
     }
     
+    func displayTotalPriceLabel() {
+        self.totalPriceLabel.text = String(format: "Total Price: %@ %.2f", self.selectedCurrency, self.totalPrice)
+    }
+    
     // MARK: - Table view data source / DATASource
     
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        self.totalPrice = 0
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: SYShopTableViewCell.reuseIdentifier,
                                     fetchRequest: request, mainContext: self.dataStack.mainContext,
                                     configuration: { cell, item, indexPath in
@@ -136,6 +143,10 @@ class SYCheckoutTableViewController: UIViewController {
                                             SYHelpers.totalItemPrice(item.value(forKey: "price") as! Float,
                                                                 numberOfItems: item.value(forKey: "itemCount") as! Int,
                                                                 exchangeRate: self.exchangeRate)
+                                        DispatchQueue.main.async {
+                                            self.totalPrice += convertedPrice
+                                            self.displayTotalPriceLabel()
+                                        }
                                         cell.detailTextLabel?.text =
                                             String(format: "%@ %f for %i Items",
                                                    self.selectedCurrency,
@@ -157,7 +168,7 @@ class PickerDataSourceAndDelegate: NSObject, UIPickerViewDataSource, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 6
+        return 5
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -172,8 +183,6 @@ class PickerDataSourceAndDelegate: NSObject, UIPickerViewDataSource, UIPickerVie
         case 3:
             return NSLocalizedString("GBP", comment: "")
         case 4:
-            return NSLocalizedString("BTC", comment: "")
-        case 5:
             return NSLocalizedString("BOB", comment: "")
         default:
             return ""

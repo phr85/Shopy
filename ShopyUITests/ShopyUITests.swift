@@ -9,18 +9,14 @@
 import XCTest
 
 class ShopyUITests: XCTestCase {
-        
+    
+    let app = XCUIApplication()
+
+    
     override func setUp() {
         super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
+        continueAfterFailure = true
         XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
     override func tearDown() {
@@ -28,9 +24,90 @@ class ShopyUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func clearBasket() {
+        app.tabBars.buttons["Basket"].tap()
+        app.navigationBars["Basket"].buttons["Empty"].tap()
+        let tablesBasket = app.tables
+        let count = tablesBasket.cells.count
+        XCTAssert(count == 0)
+        app.tabBars.buttons["Shop"].tap()
     }
+    
+    func testCheckProductCount() {
+        clearBasket()
+        let tablesQuery = app.tables
+        let count = tablesQuery.cells.count
+        XCTAssert(count == 4)
+    }
+    
+    func testAddTwoMilkToBasket() {
+        clearBasket()
+        let tablesQuery = app.tables
+        tablesQuery.cells.containing(.staticText, identifier:"Milk").buttons["+"].tap()
+        tablesQuery.cells.containing(.staticText, identifier:"Milk").buttons["+"].tap()
+        
+        app.tabBars.buttons["Basket"].tap()
+        
+        //        let tablesQuery = app.tables
+        let count = tablesQuery.cells.count
+        XCTAssert(count == 1)
+    }
+    
+    func testBasketTotalPriceInUSD() {
+        clearBasket()
+        let tablesShop = app.tables
+        tablesShop.cells.containing(.staticText, identifier:"Eggs").buttons["+"].tap()
+        tablesShop.cells.containing(.staticText, identifier:"Eggs").buttons["+"].tap()
+        tablesShop.cells.containing(.staticText, identifier:"Milk").buttons["+"].tap()
+        tablesShop.cells.containing(.staticText, identifier:"Beans").buttons["+"].tap()
+        
+        
+        
+        app.tabBars.buttons["Basket"].tap()
+        app.navigationBars["Basket"].buttons["Checkout"].tap()
+        
+        
+        let table = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .table).element
+        table.swipeUp()
+        
+        
+        XCTAssert(XCUIApplication().staticTexts["Total Price: USD 6.23"].exists)
+        XCUIApplication().toolbars.buttons["Order Now"].tap()
+    }
+    
+    func testBasketTotalPriceInEUR() {
+        clearBasket()
+        let tablesShop = app.tables
+        tablesShop.cells.containing(.staticText, identifier:"Eggs").buttons["+"].tap()
+        tablesShop.cells.containing(.staticText, identifier:"Eggs").buttons["+"].tap()
+        tablesShop.cells.containing(.staticText, identifier:"Milk").buttons["+"].tap()
+        tablesShop.cells.containing(.staticText, identifier:"Beans").buttons["+"].tap()
+        
+        
+        
+        app.tabBars.buttons["Basket"].tap()
+        app.navigationBars["Basket"].buttons["Checkout"].tap()
+        
+        
+        let table = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .table).element
+        table.swipeUp()
+        
+        
+        XCTAssert(XCUIApplication().staticTexts["Total Price: EUR 6.23"].exists)
+        XCUIApplication().toolbars.buttons["Order Now"].tap()
+        let tablesBasket = app.tables
+        let count = tablesBasket.cells.count
+        XCTAssert(count == 0)
+    }
+    
+    func testIsBasketClear() {
+        clearBasket()
+        app.tabBars.buttons["Basket"].tap()
+        let tablesBasket = app.tables
+        let count = tablesBasket.cells.count
+        XCTAssert(count == 0)
+    }
+ 
+    
     
 }
