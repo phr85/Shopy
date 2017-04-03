@@ -7,89 +7,165 @@
 //
 
 import UIKit
+import CoreData
+import DATAStack
+import DATASource
+import SwiftyJSON
 
-class SYCheckoutTableViewController: UITableViewController {
+class SYCheckoutTableViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    let dataStack = (UIApplication.shared.delegate as! AppDelegate).dataStack
+    let pickerViewDataSourceAndDelegate: UIPickerViewDelegate = PickerDataSourceAndDelegate()
+    
+    // MARK: - -
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Initialization
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    // MARK: - Setup
+    
+    private func setup() {
+        setupBasketTableViewCell()
+        setupTableView()
+    }
+    
+    private func setupBasketTableViewCell() {
+        tableView.register(UINib(nibName: "SYBasketTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: SYShopTableViewCell.reuseIdentifier)
+    }
+    
+    private func setupTableView() {
+        self.tableView.dataSource = self.dataSource
+    }
+    
+    // MARK: - Actions
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    @IBAction func changeCurrency(sender: UIBarButtonItem) {
+        let sheetController = self.currencyPicker()
+        self.present(sheetController, animated: true, completion: nil)
+    }
+    
+    @IBAction func orderNow(sender: UIBarButtonItem) {
+        self.dataStack.performInNewBackgroundContext { backgroundContext in
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do {
+                try backgroundContext.execute(batchDeleteRequest)
+            } catch {
+            }
+            try! backgroundContext.save()
+            DispatchQueue.main.async {
+                self.dataSource.fetch()
+            }
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func currencyPicker() -> ActionSheetController {
+        let pickerView = UIPickerView(frame: CGRect.zero)
+        pickerView.tag = 1
+        pickerView.delegate = self.pickerViewDataSourceAndDelegate
+        
+        let okAction = ActionSheetControllerAction(style: .Done, title: "Apply", dismissesActionController: true) { controller in
+            let dataStack = (UIApplication.shared.delegate as! AppDelegate).dataStack
+            dataStack.performInNewBackgroundContext { backgroundContext in
+                let selectedCurrency = self.pickerViewDataSourceAndDelegate.pickerView!(pickerView, titleForRow: pickerView.selectedRow(inComponent: 0), forComponent: 0)
+                print(selectedCurrency ?? "")
+                // API call...
+                let newCurrency = self.convertCurrencyTo(currencyKey: selectedCurrency!)
+                print(newCurrency)
+            }
+        }
+        let cancelAction = ActionSheetControllerAction(
+            style: .Cancel,
+            title: "Cancel",
+            dismissesActionController: true,
+            handler: nil)
+        let sheetController = ActionSheetController(
+            title: "Select Currency",
+            message: "",
+            cancelAction: cancelAction,
+            okAction: okAction)
+        sheetController.disableBlurEffects = false
+        sheetController.contentView = pickerView
+        return sheetController
+    }
+    
+    private func convertCurrencyTo(currencyKey: String) -> String {
+        let urlString = "http://apilayer.net/api/live?access_key=5e5eee34674eea997c910f445b014faa&format=1&source=USD&currencies=" + currencyKey
+        if let url = URL(string: urlString) {
+            if let data = try? Data(contentsOf: url, options: []) {
+                let json = JSON(data: data)
+                print(json)
+                if let er = json["quotes"]["USD" + currencyKey].string {
+                    print(er)
+                }
+            }
+        }
+        return ""
+    }
+    
+    // MARK: - Table view data source / DATASource
+    
+    lazy var dataSource: DATASource = {
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        let dataSource = DATASource(tableView: self.tableView, cellIdentifier: SYShopTableViewCell.reuseIdentifier,
+                                    fetchRequest: request, mainContext: self.dataStack.mainContext,
+                                    configuration: { cell, item, indexPath in
+                                        cell.textLabel?.text = item.value(forKey: "title") as? String
+                                        cell.detailTextLabel?.text = item.value(forKey: "title") as? String
+                                        cell.detailTextLabel?.text =
+                                            String(format: "$ %@ for %.0f Items",
+                                                   (item.value(forKey: "price") as? String)!,
+                                                   (item.value(forKey: "itemCount") as? Double)!)
+        })
+        
+        return dataSource
+    }()
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+}
+
+class PickerDataSourceAndDelegate: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 6
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch row {
+        case 0:
+            return NSLocalizedString("USD", comment: "")
+        case 1:
+            return NSLocalizedString("EUR", comment: "")
+        case 2:
+            return NSLocalizedString("CHF", comment: "")
+        case 3:
+            return NSLocalizedString("GBP", comment: "")
+        case 4:
+            return NSLocalizedString("BTC", comment: "")
+        case 5:
+            return NSLocalizedString("BOB", comment: "")
+        default:
+            return ""
+        }
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

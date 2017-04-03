@@ -21,6 +21,10 @@
 		AB14D78A1E8E5B960040BC56 /* SYShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D7881E8E5B960040BC56 /* SYShopTableViewCell.swift */; };
 		AB14D78B1E8E5B960040BC56 /* SYShopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB14D7891E8E5B960040BC56 /* SYShopTableViewCell.xib */; };
 		AB14D78F1E8E72CF0040BC56 /* SYBasketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D78E1E8E72CF0040BC56 /* SYBasketTableViewController.swift */; };
+		AB7775811E92426A00ABBDEB /* ActionSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77757D1E92426A00ABBDEB /* ActionSheetController.swift */; };
+		AB7775821E92426A00ABBDEB /* ActionSheetControllerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77757E1E92426A00ABBDEB /* ActionSheetControllerAction.swift */; };
+		AB7775831E92426A00ABBDEB /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77757F1E92426A00ABBDEB /* UIViewController+Helpers.swift */; };
+		AB7775841E92426A00ABBDEB /* QueuedAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7775801E92426A00ABBDEB /* QueuedAlertPresenter.swift */; };
 		ABAD52AB1E900ABD00A58DAD /* index.json in Resources */ = {isa = PBXBuildFile; fileRef = ABAD52AA1E900ABD00A58DAD /* index.json */; };
 		ABAD52B01E900D1F00A58DAD /* SMArticle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */; };
 		ABAD52B11E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */; };
@@ -71,6 +75,11 @@
 		AB14D7881E8E5B960040BC56 /* SYShopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYShopTableViewCell.swift; sourceTree = "<group>"; };
 		AB14D7891E8E5B960040BC56 /* SYShopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SYShopTableViewCell.xib; sourceTree = "<group>"; };
 		AB14D78E1E8E72CF0040BC56 /* SYBasketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBasketTableViewController.swift; sourceTree = "<group>"; };
+		AB77757C1E92426A00ABBDEB /* ActionSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetController.h; sourceTree = "<group>"; };
+		AB77757D1E92426A00ABBDEB /* ActionSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetController.swift; sourceTree = "<group>"; };
+		AB77757E1E92426A00ABBDEB /* ActionSheetControllerAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetControllerAction.swift; sourceTree = "<group>"; };
+		AB77757F1E92426A00ABBDEB /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
+		AB7775801E92426A00ABBDEB /* QueuedAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueuedAlertPresenter.swift; sourceTree = "<group>"; };
 		ABAD52621E90002900A58DAD /* ShopyAppModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShopyAppModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		ABAD52AA1E900ABD00A58DAD /* index.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = index.json; sourceTree = "<group>"; };
 		ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMArticle+CoreDataClass.swift"; path = "../SMArticle+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -170,6 +179,7 @@
 				AB14D75A1E8E55770040BC56 /* Assets.xcassets */,
 				ABAD52AA1E900ABD00A58DAD /* index.json */,
 				AB14D75F1E8E55770040BC56 /* Info.plist */,
+				AB77757A1E92424B00ABBDEB /* Libs */,
 			);
 			path = Shopy;
 			sourceTree = "<group>";
@@ -238,6 +248,26 @@
 				AB14D7891E8E5B960040BC56 /* SYShopTableViewCell.xib */,
 			);
 			name = SYShopTableCell;
+			sourceTree = "<group>";
+		};
+		AB77757A1E92424B00ABBDEB /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				AB77757B1E92425F00ABBDEB /* ActionSheetController */,
+			);
+			name = Libs;
+			sourceTree = "<group>";
+		};
+		AB77757B1E92425F00ABBDEB /* ActionSheetController */ = {
+			isa = PBXGroup;
+			children = (
+				AB77757C1E92426A00ABBDEB /* ActionSheetController.h */,
+				AB77757D1E92426A00ABBDEB /* ActionSheetController.swift */,
+				AB77757E1E92426A00ABBDEB /* ActionSheetControllerAction.swift */,
+				AB77757F1E92426A00ABBDEB /* UIViewController+Helpers.swift */,
+				AB7775801E92426A00ABBDEB /* QueuedAlertPresenter.swift */,
+			);
+			name = ActionSheetController;
 			sourceTree = "<group>";
 		};
 		ABD433961E8FEA0B006A9457 /* SYBasketTableViewCell */ = {
@@ -551,12 +581,16 @@
 				ABAD52B01E900D1F00A58DAD /* SMArticle+CoreDataClass.swift in Sources */,
 				AB14D74F1E8E55770040BC56 /* AppDelegate.swift in Sources */,
 				ABAD52B71E9031D500A58DAD /* SYCheckoutTableViewController.swift in Sources */,
+				AB7775811E92426A00ABBDEB /* ActionSheetController.swift in Sources */,
+				AB7775841E92426A00ABBDEB /* QueuedAlertPresenter.swift in Sources */,
+				AB7775831E92426A00ABBDEB /* UIViewController+Helpers.swift in Sources */,
 				AB14D7521E8E55770040BC56 /* ShopyAppModel.xcdatamodeld in Sources */,
 				ABAD52B31E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift in Sources */,
 				ABAD52B11E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift in Sources */,
 				AB14D78A1E8E5B960040BC56 /* SYShopTableViewCell.swift in Sources */,
 				AB14D7851E8E5AE40040BC56 /* SYShopTableViewController.swift in Sources */,
 				ABD433991E8FEA2E006A9457 /* SYBasketTableViewCell.swift in Sources */,
+				AB7775821E92426A00ABBDEB /* ActionSheetControllerAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
