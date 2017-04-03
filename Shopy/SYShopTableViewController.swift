@@ -21,6 +21,7 @@ class SYShopTableViewController: UITableViewController {
     // MARK: - Properties
     
     let dataStack = (UIApplication.shared.delegate as! AppDelegate).dataStack
+    let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     // MARK: - Initialization
     
@@ -68,20 +69,46 @@ class SYShopTableViewController: UITableViewController {
     
     // MARK: - Actions
     
+    @IBAction func emptyBasket(sender: UIBarButtonItem) {
+        self.dataStack.performInNewBackgroundContext { backgroundContext in
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do {
+                try backgroundContext.execute(batchDeleteRequest)
+            } catch {
+            }
+            try! backgroundContext.save()
+            DispatchQueue.main.async {
+                self.dataSource.fetch()
+            }
+        }
+    }
+    
     @IBAction func addProductToBasket(sender: GMStepper) {
         let stepperIndexPath = IndexPath.init(row: sender.tag, section: 0)
         let item: SMProducts = self.dataSource.object(stepperIndexPath) as! SMProducts
         self.dataStack.performInNewBackgroundContext { backgroundContext in
-            let entity = NSEntityDescription.entity(forEntityName: "SMArticle", in: backgroundContext)!
-            let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
-            object.setValue(item.title, forKey: "title")
-            object.setValue(item.price, forKey: "price")
-            object.setValue(sender.stepValue, forKey: "itemCount")
-            object.setValue(item.id, forKey: "id")
-
-//            object.setValue(sender.stepValue, forKey: "itemCount")
+            let request:NSFetchRequest<SMArticle> = NSFetchRequest(entityName: "SMArticle")
+            request.predicate = NSPredicate(format: "id ==[c] %@", item.id)
+            var resultItem = try! backgroundContext.fetch(request)
+            if resultItem.count > 0 {
+                if (sender.value == 0) {
+                    backgroundContext.delete(resultItem[0])
+                } else {
+                    resultItem[0].setValue(sender.value, forKey: "itemCount")
+                }
+            } else {
+                let entity = NSEntityDescription.entity(forEntityName: "SMArticle", in: backgroundContext)!
+                let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
+                object.setValue(item.title, forKey: "title")
+                object.setValue(item.price, forKey: "price")
+                object.setValue(sender.value, forKey: "itemCount")
+                object.setValue(item.unit, forKey: "unit")
+                object.setValue(item.id, forKey: "id")
+            }
             try! backgroundContext.save()
         }
+        appDelegate.updateBasketBadge()
     }
     
     // MARK: - Table view data source / DATASource
@@ -97,8 +124,8 @@ class SYShopTableViewController: UITableViewController {
                                         shopCell.stepperButton.tag = indexPath.row
                                         shopCell.productTitel?.text = item.value(forKey: "title") as? String
                                         shopCell.priceLabel?.text =
-                                            String(format: "$ %@ per %@",
-                                                   (item.value(forKey: "price") as? String)!,
+                                            String(format: "$ %.2f per %@",
+                                                   (item.value(forKey: "price") as? Float)!,
                                                    (item.value(forKey: "unit") as? String)!)
         })
         

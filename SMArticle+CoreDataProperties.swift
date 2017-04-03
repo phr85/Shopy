@@ -12,13 +12,10 @@ import CoreData
 
 extension SMArticle {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<SMArticle> {
-        return NSFetchRequest<SMArticle>(entityName: "SMArticle")
-    }
-
-    @NSManaged public var itemCount: Double
+    @NSManaged public var itemCount: Int16
     @NSManaged public var title: String?
-    @NSManaged public var price: String?
+    @NSManaged public var price: Float
+    @NSManaged public var unit: String?
     @NSManaged public var id: String
 
 }

@@ -19,9 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     let dataStack = DATAStack(modelName:"ShopyAppModel")
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        self.updateBasketBadge()
         return true
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -44,6 +45,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
     }
+    
+    // MARK: - Helpers
 
+    func updateBasketBadge() {
+        self.dataStack.performInNewBackgroundContext { backgroundContext in
+            let request:NSFetchRequest<SMArticle> = NSFetchRequest(entityName: "SMArticle")
+            request.returnsObjectsAsFaults = false
+            let results = try! backgroundContext.fetch(request)
+            var totalPriceSum: Float = 0
+            for item:SMArticle in results {
+                let totalPrice:Float = item.price * Float(item.itemCount)
+                totalPriceSum += totalPrice
+            }
+            DispatchQueue.main.async {
+                let tabBarController:UITabBarController = self.window?.rootViewController as! UITabBarController
+                if (totalPriceSum > 0.0) {
+                    tabBarController.viewControllers?[1].tabBarItem.badgeValue = String(format: "USD %.2f", totalPriceSum)
+                } else {
+                    tabBarController.viewControllers?[1].tabBarItem.badgeValue = nil
+                }
+                
+            }
+        }
+
+    }
+    
 }
 

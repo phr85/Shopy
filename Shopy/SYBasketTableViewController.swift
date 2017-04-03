@@ -16,15 +16,20 @@ class SYBasketTableViewController: UITableViewController {
     // MARK: - Properties
     
     let dataStack = (UIApplication.shared.delegate as! AppDelegate).dataStack
+    let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+
     
     // MARK: - Initialization
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        self.reloadData()
+    }
+    
     // MARK: - Setup
 
     private func setup() {
@@ -53,9 +58,17 @@ class SYBasketTableViewController: UITableViewController {
             }
             try! backgroundContext.save()
             DispatchQueue.main.async {
-                self.dataSource.fetch()
+                self.reloadData()
             }
         }
+    }
+    
+    // MARK: - Helpers
+
+    private func reloadData() {
+        self.dataSource.fetch()
+        self.tableView.reloadData()
+        appDelegate.updateBasketBadge()
     }
     
     // MARK: - Table view data source / DATASource
@@ -69,10 +82,12 @@ class SYBasketTableViewController: UITableViewController {
                                     configuration: { cell, item, indexPath in
             cell.textLabel?.text = item.value(forKey: "title") as? String
             cell.detailTextLabel?.text = item.value(forKey: "title") as? String
-                                        cell.detailTextLabel?.text =
-                                            String(format: "$ %@ for %.0f Items",
-                                                   (item.value(forKey: "price") as? String)!,
-                                                   (item.value(forKey: "itemCount") as? Double)!)
+            var totalItemPrice: Float =
+                SYHelpers.totalItemPrice(item.value(forKey: "price") as! Float,
+                                         numberOfItems: item.value(forKey: "itemCount") as! Int,
+                                         exchangeRate: 1.0)
+            cell.detailTextLabel?.text =
+                String(format: "USD %.2f for %i Items", totalItemPrice, (item.value(forKey: "itemCount") as? Int)!)
         })
         
         return dataSource

@@ -18,13 +18,14 @@ class SYCheckoutTableViewController: UIViewController {
     
     let dataStack = (UIApplication.shared.delegate as! AppDelegate).dataStack
     let pickerViewDataSourceAndDelegate: UIPickerViewDelegate = PickerDataSourceAndDelegate()
+    var selectedCurrency = "USD"
+    var exchangeRate: Float = 1.0
     
-    // MARK: - -
+    // MARK: -
     
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Initialization
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,10 @@ class SYCheckoutTableViewController: UIViewController {
     
     // MARK: - Actions
 
+    @IBAction func closeSheet(sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func changeCurrency(sender: UIBarButtonItem) {
         let sheetController = self.currencyPicker()
         self.present(sheetController, animated: true, completion: nil)
@@ -67,6 +72,7 @@ class SYCheckoutTableViewController: UIViewController {
                 self.dataSource.fetch()
             }
         }
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Helpers
@@ -75,15 +81,14 @@ class SYCheckoutTableViewController: UIViewController {
         let pickerView = UIPickerView(frame: CGRect.zero)
         pickerView.tag = 1
         pickerView.delegate = self.pickerViewDataSourceAndDelegate
-        
-        let okAction = ActionSheetControllerAction(style: .Done, title: "Apply", dismissesActionController: true) { controller in
+        let okAction = ActionSheetControllerAction(style: .Done, title: "Apply", dismissesActionController: true) {
+            controller in
             let dataStack = (UIApplication.shared.delegate as! AppDelegate).dataStack
             dataStack.performInNewBackgroundContext { backgroundContext in
-                let selectedCurrency = self.pickerViewDataSourceAndDelegate.pickerView!(pickerView, titleForRow: pickerView.selectedRow(inComponent: 0), forComponent: 0)
-                print(selectedCurrency ?? "")
-                // API call...
-                let newCurrency = self.convertCurrencyTo(currencyKey: selectedCurrency!)
-                print(newCurrency)
+                self.selectedCurrency = self.pickerViewDataSourceAndDelegate.pickerView!(
+                    pickerView, titleForRow: pickerView.selectedRow(inComponent: 0), forComponent: 0)!
+                self.exchangeRate = self.getExchangeRate()
+                self.tableView.reloadData()
             }
         }
         let cancelAction = ActionSheetControllerAction(
@@ -92,7 +97,7 @@ class SYCheckoutTableViewController: UIViewController {
             dismissesActionController: true,
             handler: nil)
         let sheetController = ActionSheetController(
-            title: "Select Currency",
+            title: "Select your Currency",
             message: "",
             cancelAction: cancelAction,
             okAction: okAction)
@@ -101,18 +106,20 @@ class SYCheckoutTableViewController: UIViewController {
         return sheetController
     }
     
-    private func convertCurrencyTo(currencyKey: String) -> String {
-        let urlString = "http://apilayer.net/api/live?access_key=5e5eee34674eea997c910f445b014faa&format=1&source=USD&currencies=" + currencyKey
+    private func getExchangeRate() -> Float {
+        // TODO: Create pro account for HTTPS access ;-)
+        let urlString = "http://apilayer.net/api/live?access_key=5e5eee34674eea997c910f445b014faa&format=1&source=USD&currencies=" + self.selectedCurrency
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url, options: []) {
                 let json = JSON(data: data)
-                print(json)
-                if let er = json["quotes"]["USD" + currencyKey].string {
-                    print(er)
+                let jsonQuotes = json["quotes"]
+                if let ex = jsonQuotes["USD" + self.selectedCurrency].float {
+                    return ex
                 }
             }
         }
-        return ""
+        self.selectedCurrency = "USD"
+        return 1.0
     }
     
     // MARK: - Table view data source / DATASource
@@ -120,18 +127,21 @@ class SYCheckoutTableViewController: UIViewController {
     lazy var dataSource: DATASource = {
         let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: SYShopTableViewCell.reuseIdentifier,
                                     fetchRequest: request, mainContext: self.dataStack.mainContext,
                                     configuration: { cell, item, indexPath in
                                         cell.textLabel?.text = item.value(forKey: "title") as? String
                                         cell.detailTextLabel?.text = item.value(forKey: "title") as? String
+                                        var convertedPrice: Float =
+                                            SYHelpers.totalItemPrice(item.value(forKey: "price") as! Float,
+                                                                numberOfItems: item.value(forKey: "itemCount") as! Int,
+                                                                exchangeRate: self.exchangeRate)
                                         cell.detailTextLabel?.text =
-                                            String(format: "$ %@ for %.0f Items",
-                                                   (item.value(forKey: "price") as? String)!,
-                                                   (item.value(forKey: "itemCount") as? Double)!)
+                                            String(format: "%@ %f for %i Items",
+                                                   self.selectedCurrency,
+                                                   convertedPrice,
+                                                   (item.value(forKey: "itemCount") as? Int)!)
         })
-        
         return dataSource
     }()
     
@@ -151,6 +161,7 @@ class PickerDataSourceAndDelegate: NSObject, UIPickerViewDataSource, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        // TODO: Put values into JSON file...
         switch row {
         case 0:
             return NSLocalizedString("USD", comment: "")
