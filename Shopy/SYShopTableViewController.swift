@@ -30,6 +30,10 @@ class SYShopTableViewController: UITableViewController {
         setup()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.reloadData()
+    }
+    
     // MARK: - Setup
     
     private func setup() {
@@ -98,6 +102,24 @@ class SYShopTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Helpers
+    
+    private func reloadData() {
+        self.tableView.reloadData()
+    }
+    
+    func stepperValueFromBasketItem(_ prodId: String) -> Double {
+        let request:NSFetchRequest<SMArticle> = NSFetchRequest(entityName: "SMArticle")
+        request.predicate = NSPredicate(format: "id ==[c] %@", prodId)
+        var resultItem = try! self.dataStack.viewContext.fetch(request)
+        if resultItem.count > 0 {
+            let item:SMArticle = resultItem[0]
+            return Double(item.itemCount)
+        }
+        return 0
+    }
+
+    
     // MARK: - Table view data source / DATASource
     
     lazy var dataSource: DATASource = {
@@ -108,12 +130,14 @@ class SYShopTableViewController: UITableViewController {
                                     fetchRequest: request, mainContext: self.dataStack.mainContext,
                                     configuration: { cell, item, indexPath in
                                         let shopCell: SYShopTableViewCell = cell as! SYShopTableViewCell
+                                        let productItem: SMProducts = item as! SMProducts
                                         shopCell.stepperButton.tag = indexPath.row
+                                        shopCell.stepperButton.value = self.stepperValueFromBasketItem(productItem.id)
                                         shopCell.productTitel?.text = item.value(forKey: "title") as? String
                                         shopCell.priceLabel?.text =
                                             String(format: "USD %.2f per %@",
-                                                   (item.value(forKey: "price") as? Float)!,
-                                                   (item.value(forKey: "unit") as? String)!)
+                                                   productItem.price,
+                                                   productItem.unit!)
         })
         
         return dataSource

@@ -21,8 +21,8 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tomatoes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCY-lf-FKy">
                         <rect key="frame" x="11" y="11" width="246" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="246" id="2ZC-LT-aZ2"/>
-                            <constraint firstAttribute="height" constant="21" id="ynq-qZ-vai"/>
+                            <constraint firstAttribute="width" constant="246" id="Mqj-hQ-qqx"/>
+                            <constraint firstAttribute="height" constant="21" id="sry-VY-GL3"/>
                         </constraints>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                         <nil key="textColor"/>
@@ -31,10 +31,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0D-HF-3my" customClass="GMStepper" customModule="GMStepper">
                         <rect key="frame" x="265" y="14" width="132" height="39"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="39" id="PNa-pD-XaT"/>
-                            <constraint firstAttribute="width" constant="132" id="ivp-qy-Wyj"/>
-                        </constraints>
                         <connections>
                             <action selector="addProductToBasketWithSender:" destination="-1" eventType="valueChanged" id="xKR-8D-W25"/>
                         </connections>
@@ -47,16 +43,16 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="z0D-HF-3my" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6M2-ab-WDc"/>
-                    <constraint firstItem="NMm-Jb-sxO" firstAttribute="top" secondItem="lCY-lf-FKy" secondAttribute="bottom" constant="2" id="9Dt-3s-w5t"/>
-                    <constraint firstItem="z0D-HF-3my" firstAttribute="leading" secondItem="NMm-Jb-sxO" secondAttribute="trailing" constant="8" symbolic="YES" id="BdX-Pn-vnw"/>
-                    <constraint firstItem="lCY-lf-FKy" firstAttribute="leading" secondItem="NMm-Jb-sxO" secondAttribute="leading" id="Cbc-7E-X0x"/>
-                    <constraint firstItem="lCY-lf-FKy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="3" id="G5h-jD-Ega"/>
-                    <constraint firstItem="z0D-HF-3my" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="HrZ-cC-qLl"/>
-                    <constraint firstItem="lCY-lf-FKy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="I5Q-La-yxx"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="NMm-Jb-sxO" secondAttribute="bottom" constant="3.5" id="Iam-DF-vdj"/>
-                    <constraint firstItem="z0D-HF-3my" firstAttribute="leading" secondItem="lCY-lf-FKy" secondAttribute="trailing" constant="8" symbolic="YES" id="Ukg-U1-pvL"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="z0D-HF-3my" secondAttribute="trailing" constant="3" id="xYm-ZD-NFi"/>
+                    <constraint firstItem="NMm-Jb-sxO" firstAttribute="top" secondItem="lCY-lf-FKy" secondAttribute="bottom" constant="2" id="0HF-iK-GxD"/>
+                    <constraint firstItem="lCY-lf-FKy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="3" id="3d0-Ph-DuY"/>
+                    <constraint firstItem="lCY-lf-FKy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="6Dk-ZG-9Ia"/>
+                    <constraint firstItem="z0D-HF-3my" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="6Zk-n6-cfm"/>
+                    <constraint firstItem="z0D-HF-3my" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7Mn-yY-4dJ"/>
+                    <constraint firstItem="z0D-HF-3my" firstAttribute="leading" secondItem="NMm-Jb-sxO" secondAttribute="trailing" constant="8" symbolic="YES" id="CWe-da-jjf"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NMm-Jb-sxO" secondAttribute="bottom" constant="3.5" id="Ra6-ho-8wR"/>
+                    <constraint firstItem="z0D-HF-3my" firstAttribute="leading" secondItem="lCY-lf-FKy" secondAttribute="trailing" constant="8" symbolic="YES" id="nB6-zB-8B4"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="z0D-HF-3my" secondAttribute="trailing" constant="3" id="pZT-yC-GF5"/>
+                    <constraint firstItem="lCY-lf-FKy" firstAttribute="leading" secondItem="NMm-Jb-sxO" secondAttribute="leading" id="usJ-9o-Vh6"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
