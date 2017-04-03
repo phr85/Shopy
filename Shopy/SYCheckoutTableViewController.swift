@@ -70,9 +70,9 @@ class SYCheckoutTableViewController: UIViewController {
             try! backgroundContext.save()
             DispatchQueue.main.async {
                 self.dataSource.fetch()
+                self.dismiss(animated: true, completion: nil)
             }
         }
-        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Helpers
