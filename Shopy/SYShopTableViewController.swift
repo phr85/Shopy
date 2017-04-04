@@ -86,7 +86,7 @@ class SYShopTableViewController: UITableViewController {
                 } else {
                     resultItem[0].setValue(sender.value, forKey: "itemCount")
                 }
-            } else {
+            } else if(sender.value > 0) {
                 let entity = NSEntityDescription.entity(forEntityName: "SMBasketArticle", in: backgroundContext)!
                 let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
                 object.setValue(item.title, forKey: "title")
@@ -118,7 +118,6 @@ class SYShopTableViewController: UITableViewController {
         }
         return 0
     }
-
     
     // MARK: - Table view data source / DATASource
     
@@ -133,7 +132,7 @@ class SYShopTableViewController: UITableViewController {
                                         let productItem: SMProducts = item as! SMProducts
                                         shopCell.stepperButton.tag = indexPath.row
                                         shopCell.stepperButton.value = self.stepperValueFromBasketItem(productItem.id)
-                                        shopCell.productTitel?.text = item.value(forKey: "title") as? String
+                                        shopCell.productTitel?.text = productItem.title
                                         shopCell.priceLabel?.text =
                                             String(format: "USD %.2f per %@",
                                                    productItem.price,

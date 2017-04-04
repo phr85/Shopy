@@ -45,10 +45,7 @@ class ShopyUITests: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.cells.containing(.staticText, identifier:"Milk").buttons["+"].tap()
         tablesQuery.cells.containing(.staticText, identifier:"Milk").buttons["+"].tap()
-        
         app.tabBars.buttons["Basket"].tap()
-        
-        //        let tablesQuery = app.tables
         let count = tablesQuery.cells.count
         XCTAssert(count == 1)
     }

@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             let request:NSFetchRequest<SMBasketArticle> = NSFetchRequest(entityName: "SMBasketArticle")
             request.returnsObjectsAsFaults = false
             let results = try! backgroundContext.fetch(request)
-            var totalPriceSum: Float = 0
+            var totalPriceSum: Float = 0.0
             for item:SMBasketArticle in results {
                 let totalPrice:Float = item.price * Float(item.itemCount)
                 totalPriceSum += totalPrice
