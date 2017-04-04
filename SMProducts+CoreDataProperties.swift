@@ -12,12 +12,8 @@ import CoreData
 
 extension SMProducts {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<SMProducts> {
-        return NSFetchRequest<SMProducts>(entityName: "SMProducts")
-    }
-
     @NSManaged public var title: String?
-    @NSManaged public var price: String?
+    @NSManaged public var price: Float
     @NSManaged public var unit: String?
     @NSManaged public var id: String
 

@@ -14,14 +14,7 @@ class SYBasketTableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "BasketCell"
     
-    // MARK: -
-    
-//    @IBOutlet weak var productTitel: UILabel!
-//    @IBOutlet weak var productCountAndPrice: UILabel!
-    
-    
     // MARK: - Initialization
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

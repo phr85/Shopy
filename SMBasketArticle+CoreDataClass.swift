@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(SMArticle)
-public class SMArticle: NSManagedObject {
+@objc(SMBasketArticle)
+public class SMBasketArticle: NSManagedObject {
 
 }

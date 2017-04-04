@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1CB5CCB13F9931ECC921328F /* Pods_ShopyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E97BBB5CF6E2855E60139C1 /* Pods_ShopyTests.framework */; };
 		229E85A56B4951BACB533FD3 /* Pods_ShopyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9675A347B7076222023BFC /* Pods_ShopyUITests.framework */; };
 		A6E5686B9DF632ACB1CDA8AC /* Pods_Shopy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30E0069CE1E6D1A0E147D45 /* Pods_Shopy.framework */; };
 		AB14D74F1E8E55770040BC56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D74E1E8E55770040BC56 /* AppDelegate.swift */; };
@@ -15,30 +14,27 @@
 		AB14D7591E8E55770040BC56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB14D7571E8E55770040BC56 /* Main.storyboard */; };
 		AB14D75B1E8E55770040BC56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB14D75A1E8E55770040BC56 /* Assets.xcassets */; };
 		AB14D75E1E8E55770040BC56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB14D75C1E8E55770040BC56 /* LaunchScreen.storyboard */; };
-		AB14D7691E8E55770040BC56 /* ShopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D7681E8E55770040BC56 /* ShopyTests.swift */; };
 		AB14D7741E8E55770040BC56 /* ShopyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D7731E8E55770040BC56 /* ShopyUITests.swift */; };
 		AB14D7851E8E5AE40040BC56 /* SYShopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D7841E8E5AE40040BC56 /* SYShopTableViewController.swift */; };
 		AB14D78A1E8E5B960040BC56 /* SYShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D7881E8E5B960040BC56 /* SYShopTableViewCell.swift */; };
 		AB14D78B1E8E5B960040BC56 /* SYShopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB14D7891E8E5B960040BC56 /* SYShopTableViewCell.xib */; };
 		AB14D78F1E8E72CF0040BC56 /* SYBasketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14D78E1E8E72CF0040BC56 /* SYBasketTableViewController.swift */; };
+		AB7775811E92426A00ABBDEB /* ActionSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77757D1E92426A00ABBDEB /* ActionSheetController.swift */; };
+		AB7775821E92426A00ABBDEB /* ActionSheetControllerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77757E1E92426A00ABBDEB /* ActionSheetControllerAction.swift */; };
+		AB7775831E92426A00ABBDEB /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77757F1E92426A00ABBDEB /* UIViewController+Helpers.swift */; };
+		AB7775841E92426A00ABBDEB /* QueuedAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7775801E92426A00ABBDEB /* QueuedAlertPresenter.swift */; };
 		ABAD52AB1E900ABD00A58DAD /* index.json in Resources */ = {isa = PBXBuildFile; fileRef = ABAD52AA1E900ABD00A58DAD /* index.json */; };
-		ABAD52B01E900D1F00A58DAD /* SMArticle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */; };
-		ABAD52B11E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */; };
+		ABAD52B01E900D1F00A58DAD /* SMBasketArticle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AC1E900D1F00A58DAD /* SMBasketArticle+CoreDataClass.swift */; };
+		ABAD52B11E900D1F00A58DAD /* SMBasketArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AD1E900D1F00A58DAD /* SMBasketArticle+CoreDataProperties.swift */; };
 		ABAD52B21E900D1F00A58DAD /* SMProducts+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */; };
 		ABAD52B31E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */; };
 		ABAD52B71E9031D500A58DAD /* SYCheckoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52B61E9031D500A58DAD /* SYCheckoutTableViewController.swift */; };
+		ABAD52B91E92848700A58DAD /* SYHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52B81E92848700A58DAD /* SYHelpers.swift */; };
 		ABD433991E8FEA2E006A9457 /* SYBasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD433971E8FEA2E006A9457 /* SYBasketTableViewCell.swift */; };
 		ABD4339A1E8FEA2E006A9457 /* SYBasketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD433981E8FEA2E006A9457 /* SYBasketTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AB14D7651E8E55770040BC56 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AB14D7431E8E55770040BC56 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AB14D74A1E8E55770040BC56;
-			remoteInfo = Shopy;
-		};
 		AB14D7701E8E55770040BC56 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AB14D7431E8E55770040BC56 /* Project object */;
@@ -61,9 +57,6 @@
 		AB14D75A1E8E55770040BC56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB14D75D1E8E55770040BC56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB14D75F1E8E55770040BC56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB14D7641E8E55770040BC56 /* ShopyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB14D7681E8E55770040BC56 /* ShopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopyTests.swift; sourceTree = "<group>"; };
-		AB14D76A1E8E55770040BC56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB14D76F1E8E55770040BC56 /* ShopyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB14D7731E8E55770040BC56 /* ShopyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopyUITests.swift; sourceTree = "<group>"; };
 		AB14D7751E8E55770040BC56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,14 +64,20 @@
 		AB14D7881E8E5B960040BC56 /* SYShopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYShopTableViewCell.swift; sourceTree = "<group>"; };
 		AB14D7891E8E5B960040BC56 /* SYShopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SYShopTableViewCell.xib; sourceTree = "<group>"; };
 		AB14D78E1E8E72CF0040BC56 /* SYBasketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBasketTableViewController.swift; sourceTree = "<group>"; };
+		AB77757C1E92426A00ABBDEB /* ActionSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetController.h; sourceTree = "<group>"; };
+		AB77757D1E92426A00ABBDEB /* ActionSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetController.swift; sourceTree = "<group>"; };
+		AB77757E1E92426A00ABBDEB /* ActionSheetControllerAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetControllerAction.swift; sourceTree = "<group>"; };
+		AB77757F1E92426A00ABBDEB /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
+		AB7775801E92426A00ABBDEB /* QueuedAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueuedAlertPresenter.swift; sourceTree = "<group>"; };
 		ABAD52621E90002900A58DAD /* ShopyAppModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShopyAppModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		ABAD52AA1E900ABD00A58DAD /* index.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = index.json; sourceTree = "<group>"; };
-		ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMArticle+CoreDataClass.swift"; path = "../SMArticle+CoreDataClass.swift"; sourceTree = "<group>"; };
-		ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMArticle+CoreDataProperties.swift"; path = "../SMArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		ABAD52AC1E900D1F00A58DAD /* SMBasketArticle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMBasketArticle+CoreDataClass.swift"; path = "../SMBasketArticle+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ABAD52AD1E900D1F00A58DAD /* SMBasketArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMBasketArticle+CoreDataProperties.swift"; path = "../SMBasketArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMProducts+CoreDataClass.swift"; path = "../SMProducts+CoreDataClass.swift"; sourceTree = "<group>"; };
 		ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMProducts+CoreDataProperties.swift"; path = "../SMProducts+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ABAD52B41E901B8000A58DAD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ABAD52B61E9031D500A58DAD /* SYCheckoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYCheckoutTableViewController.swift; sourceTree = "<group>"; };
+		ABAD52B81E92848700A58DAD /* SYHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYHelpers.swift; sourceTree = "<group>"; };
 		ABD433971E8FEA2E006A9457 /* SYBasketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBasketTableViewCell.swift; sourceTree = "<group>"; };
 		ABD433981E8FEA2E006A9457 /* SYBasketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SYBasketTableViewCell.xib; sourceTree = "<group>"; };
 		E66849210C4A978DD6B9F57C /* Pods-ShopyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShopyTests/Pods-ShopyTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,14 +92,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6E5686B9DF632ACB1CDA8AC /* Pods_Shopy.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AB14D7611E8E55770040BC56 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1CB5CCB13F9931ECC921328F /* Pods_ShopyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +134,6 @@
 			children = (
 				ABAD52B41E901B8000A58DAD /* README.md */,
 				AB14D74D1E8E55770040BC56 /* Shopy */,
-				AB14D7671E8E55770040BC56 /* ShopyTests */,
 				AB14D7721E8E55770040BC56 /* ShopyUITests */,
 				AB14D74C1E8E55770040BC56 /* Products */,
 				2BA0A38B6B7E93C0DFFF8B8A /* Pods */,
@@ -155,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				AB14D74B1E8E55770040BC56 /* Shopy.app */,
-				AB14D7641E8E55770040BC56 /* ShopyTests.xctest */,
 				AB14D76F1E8E55770040BC56 /* ShopyUITests.xctest */,
 			);
 			name = Products;
@@ -170,17 +159,9 @@
 				AB14D75A1E8E55770040BC56 /* Assets.xcassets */,
 				ABAD52AA1E900ABD00A58DAD /* index.json */,
 				AB14D75F1E8E55770040BC56 /* Info.plist */,
+				AB77757A1E92424B00ABBDEB /* Libs */,
 			);
 			path = Shopy;
-			sourceTree = "<group>";
-		};
-		AB14D7671E8E55770040BC56 /* ShopyTests */ = {
-			isa = PBXGroup;
-			children = (
-				AB14D7681E8E55770040BC56 /* ShopyTests.swift */,
-				AB14D76A1E8E55770040BC56 /* Info.plist */,
-			);
-			path = ShopyTests;
 			sourceTree = "<group>";
 		};
 		AB14D7721E8E55770040BC56 /* ShopyUITests */ = {
@@ -215,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				AB14D74E1E8E55770040BC56 /* AppDelegate.swift */,
+				ABAD52B81E92848700A58DAD /* SYHelpers.swift */,
 				AB14D7841E8E5AE40040BC56 /* SYShopTableViewController.swift */,
 				AB14D78E1E8E72CF0040BC56 /* SYBasketTableViewController.swift */,
 				ABAD52B61E9031D500A58DAD /* SYCheckoutTableViewController.swift */,
@@ -240,6 +222,26 @@
 			name = SYShopTableCell;
 			sourceTree = "<group>";
 		};
+		AB77757A1E92424B00ABBDEB /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				AB77757B1E92425F00ABBDEB /* ActionSheetController */,
+			);
+			name = Libs;
+			sourceTree = "<group>";
+		};
+		AB77757B1E92425F00ABBDEB /* ActionSheetController */ = {
+			isa = PBXGroup;
+			children = (
+				AB77757C1E92426A00ABBDEB /* ActionSheetController.h */,
+				AB77757D1E92426A00ABBDEB /* ActionSheetController.swift */,
+				AB77757E1E92426A00ABBDEB /* ActionSheetControllerAction.swift */,
+				AB77757F1E92426A00ABBDEB /* UIViewController+Helpers.swift */,
+				AB7775801E92426A00ABBDEB /* QueuedAlertPresenter.swift */,
+			);
+			name = ActionSheetController;
+			sourceTree = "<group>";
+		};
 		ABD433961E8FEA0B006A9457 /* SYBasketTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,8 +254,8 @@
 		ABD4339B1E8FF2CE006A9457 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */,
-				ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */,
+				ABAD52AC1E900D1F00A58DAD /* SMBasketArticle+CoreDataClass.swift */,
+				ABAD52AD1E900D1F00A58DAD /* SMBasketArticle+CoreDataProperties.swift */,
 				ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */,
 				ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */,
 			);
@@ -282,27 +284,6 @@
 			productName = Shopy;
 			productReference = AB14D74B1E8E55770040BC56 /* Shopy.app */;
 			productType = "com.apple.product-type.application";
-		};
-		AB14D7631E8E55770040BC56 /* ShopyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AB14D77B1E8E55770040BC56 /* Build configuration list for PBXNativeTarget "ShopyTests" */;
-			buildPhases = (
-				BDB5A87AAC88AD85D2656459 /* [CP] Check Pods Manifest.lock */,
-				AB14D7601E8E55770040BC56 /* Sources */,
-				AB14D7611E8E55770040BC56 /* Frameworks */,
-				AB14D7621E8E55770040BC56 /* Resources */,
-				9053E514A5BEF71496810A58 /* [CP] Embed Pods Frameworks */,
-				0215093238758077A0D44921 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AB14D7661E8E55770040BC56 /* PBXTargetDependency */,
-			);
-			name = ShopyTests;
-			productName = ShopyTests;
-			productReference = AB14D7641E8E55770040BC56 /* ShopyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		AB14D76E1E8E55770040BC56 /* ShopyUITests */ = {
 			isa = PBXNativeTarget;
@@ -341,11 +322,6 @@
 						DevelopmentTeam = VYEZJNCHTM;
 						ProvisioningStyle = Automatic;
 					};
-					AB14D7631E8E55770040BC56 = {
-						CreatedOnToolsVersion = 8.3;
-						ProvisioningStyle = Automatic;
-						TestTargetID = AB14D74A1E8E55770040BC56;
-					};
 					AB14D76E1E8E55770040BC56 = {
 						CreatedOnToolsVersion = 8.3;
 						ProvisioningStyle = Automatic;
@@ -367,7 +343,6 @@
 			projectRoot = "";
 			targets = (
 				AB14D74A1E8E55770040BC56 /* Shopy */,
-				AB14D7631E8E55770040BC56 /* ShopyTests */,
 				AB14D76E1E8E55770040BC56 /* ShopyUITests */,
 			);
 		};
@@ -387,13 +362,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AB14D7621E8E55770040BC56 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AB14D76D1E8E55770040BC56 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -404,21 +372,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0215093238758077A0D44921 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShopyTests/Pods-ShopyTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1ADFE1921268E7AA091BF43E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,21 +417,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		9053E514A5BEF71496810A58 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShopyTests/Pods-ShopyTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B8DDFCB0F8F8F92471C8AD4A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,21 +430,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShopyUITests/Pods-ShopyUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BDB5A87AAC88AD85D2656459 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C2275A3262B8CCB3A0017F47 /* [CP] Embed Pods Frameworks */ = {
@@ -548,23 +471,20 @@
 			files = (
 				AB14D78F1E8E72CF0040BC56 /* SYBasketTableViewController.swift in Sources */,
 				ABAD52B21E900D1F00A58DAD /* SMProducts+CoreDataClass.swift in Sources */,
-				ABAD52B01E900D1F00A58DAD /* SMArticle+CoreDataClass.swift in Sources */,
+				ABAD52B01E900D1F00A58DAD /* SMBasketArticle+CoreDataClass.swift in Sources */,
 				AB14D74F1E8E55770040BC56 /* AppDelegate.swift in Sources */,
 				ABAD52B71E9031D500A58DAD /* SYCheckoutTableViewController.swift in Sources */,
+				AB7775811E92426A00ABBDEB /* ActionSheetController.swift in Sources */,
+				AB7775841E92426A00ABBDEB /* QueuedAlertPresenter.swift in Sources */,
+				AB7775831E92426A00ABBDEB /* UIViewController+Helpers.swift in Sources */,
 				AB14D7521E8E55770040BC56 /* ShopyAppModel.xcdatamodeld in Sources */,
+				ABAD52B91E92848700A58DAD /* SYHelpers.swift in Sources */,
 				ABAD52B31E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift in Sources */,
-				ABAD52B11E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift in Sources */,
+				ABAD52B11E900D1F00A58DAD /* SMBasketArticle+CoreDataProperties.swift in Sources */,
 				AB14D78A1E8E5B960040BC56 /* SYShopTableViewCell.swift in Sources */,
 				AB14D7851E8E5AE40040BC56 /* SYShopTableViewController.swift in Sources */,
 				ABD433991E8FEA2E006A9457 /* SYBasketTableViewCell.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AB14D7601E8E55770040BC56 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AB14D7691E8E55770040BC56 /* ShopyTests.swift in Sources */,
+				AB7775821E92426A00ABBDEB /* ActionSheetControllerAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,11 +499,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AB14D7661E8E55770040BC56 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AB14D74A1E8E55770040BC56 /* Shopy */;
-			targetProxy = AB14D7651E8E55770040BC56 /* PBXContainerItemProxy */;
-		};
 		AB14D7711E8E55770040BC56 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AB14D74A1E8E55770040BC56 /* Shopy */;
@@ -736,36 +651,6 @@
 			};
 			name = Release;
 		};
-		AB14D77C1E8E55770040BC56 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F97A6592F0F9255B885E27CE /* Pods-ShopyTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ShopyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.treeinspired.ShopyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shopy.app/Shopy";
-			};
-			name = Debug;
-		};
-		AB14D77D1E8E55770040BC56 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E66849210C4A978DD6B9F57C /* Pods-ShopyTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ShopyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.treeinspired.ShopyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shopy.app/Shopy";
-			};
-			name = Release;
-		};
 		AB14D77F1E8E55770040BC56 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 487E4CB113A5191923979466 /* Pods-ShopyUITests.debug.xcconfig */;
@@ -811,15 +696,6 @@
 			buildConfigurations = (
 				AB14D7791E8E55770040BC56 /* Debug */,
 				AB14D77A1E8E55770040BC56 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AB14D77B1E8E55770040BC56 /* Build configuration list for PBXNativeTarget "ShopyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AB14D77C1E8E55770040BC56 /* Debug */,
-				AB14D77D1E8E55770040BC56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

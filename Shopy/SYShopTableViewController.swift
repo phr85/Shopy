@@ -21,12 +21,17 @@ class SYShopTableViewController: UITableViewController {
     // MARK: - Properties
     
     let dataStack = (UIApplication.shared.delegate as! AppDelegate).dataStack
+    let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.reloadData()
     }
     
     // MARK: - Setup
@@ -72,16 +77,46 @@ class SYShopTableViewController: UITableViewController {
         let stepperIndexPath = IndexPath.init(row: sender.tag, section: 0)
         let item: SMProducts = self.dataSource.object(stepperIndexPath) as! SMProducts
         self.dataStack.performInNewBackgroundContext { backgroundContext in
-            let entity = NSEntityDescription.entity(forEntityName: "SMArticle", in: backgroundContext)!
-            let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
-            object.setValue(item.title, forKey: "title")
-            object.setValue(item.price, forKey: "price")
-            object.setValue(sender.stepValue, forKey: "itemCount")
-            object.setValue(item.id, forKey: "id")
-
-//            object.setValue(sender.stepValue, forKey: "itemCount")
+            let request:NSFetchRequest<SMBasketArticle> = NSFetchRequest(entityName: "SMBasketArticle")
+            request.predicate = NSPredicate(format: "id ==[c] %@", item.id)
+            var resultItem = try! backgroundContext.fetch(request)
+            if resultItem.count > 0 {
+                if (sender.value == 0) {
+                    backgroundContext.delete(resultItem[0])
+                } else {
+                    resultItem[0].setValue(sender.value, forKey: "itemCount")
+                }
+            } else if(sender.value > 0) {
+                let entity = NSEntityDescription.entity(forEntityName: "SMBasketArticle", in: backgroundContext)!
+                let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
+                object.setValue(item.title, forKey: "title")
+                object.setValue(item.price, forKey: "price")
+                object.setValue(sender.value, forKey: "itemCount")
+                object.setValue(item.unit, forKey: "unit")
+                object.setValue(item.id, forKey: "id")
+            }
             try! backgroundContext.save()
+            DispatchQueue.main.async {
+                self.appDelegate.updateBasketBadge()
+            }
         }
+    }
+    
+    // MARK: - Helpers
+    
+    private func reloadData() {
+        self.tableView.reloadData()
+    }
+    
+    func stepperValueFromBasketItem(_ prodId: String) -> Double {
+        let request:NSFetchRequest<SMBasketArticle> = NSFetchRequest(entityName: "SMBasketArticle")
+        request.predicate = NSPredicate(format: "id ==[c] %@", prodId)
+        var resultItem = try! self.dataStack.viewContext.fetch(request)
+        if resultItem.count > 0 {
+            let item:SMBasketArticle = resultItem[0]
+            return Double(item.itemCount)
+        }
+        return 0
     }
     
     // MARK: - Table view data source / DATASource
@@ -94,12 +129,14 @@ class SYShopTableViewController: UITableViewController {
                                     fetchRequest: request, mainContext: self.dataStack.mainContext,
                                     configuration: { cell, item, indexPath in
                                         let shopCell: SYShopTableViewCell = cell as! SYShopTableViewCell
+                                        let productItem: SMProducts = item as! SMProducts
                                         shopCell.stepperButton.tag = indexPath.row
-                                        shopCell.productTitel?.text = item.value(forKey: "title") as? String
+                                        shopCell.stepperButton.value = self.stepperValueFromBasketItem(productItem.id)
+                                        shopCell.productTitel?.text = productItem.title
                                         shopCell.priceLabel?.text =
-                                            String(format: "$ %@ per %@",
-                                                   (item.value(forKey: "price") as? String)!,
-                                                   (item.value(forKey: "unit") as? String)!)
+                                            String(format: "USD %.2f per %@",
+                                                   productItem.price,
+                                                   productItem.unit!)
         })
         
         return dataSource

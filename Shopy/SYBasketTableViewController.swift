@@ -16,15 +16,20 @@ class SYBasketTableViewController: UITableViewController {
     // MARK: - Properties
     
     let dataStack = (UIApplication.shared.delegate as! AppDelegate).dataStack
+    let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+
     
     // MARK: - Initialization
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.reloadData()
+    }
+    
     // MARK: - Setup
 
     private func setup() {
@@ -39,13 +44,14 @@ class SYBasketTableViewController: UITableViewController {
     
     private func setupTableView() {
         self.tableView.dataSource = self.dataSource
+        self.tableView.delegate = self
     }
     
     // MARK: - Actions
     
     @IBAction func emptyBasket(sender: UIBarButtonItem) {
         self.dataStack.performInNewBackgroundContext { backgroundContext in
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMBasketArticle")
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             do {
                 try backgroundContext.execute(batchDeleteRequest)
@@ -53,26 +59,38 @@ class SYBasketTableViewController: UITableViewController {
             }
             try! backgroundContext.save()
             DispatchQueue.main.async {
-                self.dataSource.fetch()
+                self.reloadData()
             }
         }
+    }
+    
+    // MARK: - Helpers
+
+    private func reloadData() {
+        self.dataSource.fetch()
+        self.tableView.reloadData()
+        appDelegate.updateBasketBadge()
     }
     
     // MARK: - Table view data source / DATASource
     
     lazy var dataSource: DATASource = {
-        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMBasketArticle")
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: SYShopTableViewCell.reuseIdentifier,
                                     fetchRequest: request, mainContext: self.dataStack.mainContext,
                                     configuration: { cell, item, indexPath in
-            cell.textLabel?.text = item.value(forKey: "title") as? String
-            cell.detailTextLabel?.text = item.value(forKey: "title") as? String
-                                        cell.detailTextLabel?.text =
-                                            String(format: "$ %@ for %.0f Items",
-                                                   (item.value(forKey: "price") as? String)!,
-                                                   (item.value(forKey: "itemCount") as? Double)!)
+            let basketItem: SMBasketArticle = item as! SMBasketArticle
+            cell.textLabel?.text = basketItem.title
+            var totalItemPrice: Float =
+                SYHelpers.totalItemPrice(item.value(forKey: "price") as! Float,
+                                         numberOfItems: item.value(forKey: "itemCount") as! Int,
+                                         exchangeRate: 1.0)
+            cell.detailTextLabel?.text =
+                String(format: "USD %.2f for %i %@s",
+                       totalItemPrice,
+                       basketItem.itemCount,
+                       basketItem.unit!)
         })
         
         return dataSource
