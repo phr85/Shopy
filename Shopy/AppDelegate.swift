@@ -48,11 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func updateBasketBadge() {
         self.dataStack.performInNewBackgroundContext { backgroundContext in
-            let request:NSFetchRequest<SMArticle> = NSFetchRequest(entityName: "SMArticle")
+            let request:NSFetchRequest<SMBasketArticle> = NSFetchRequest(entityName: "SMBasketArticle")
             request.returnsObjectsAsFaults = false
             let results = try! backgroundContext.fetch(request)
             var totalPriceSum: Float = 0
-            for item:SMArticle in results {
+            for item:SMBasketArticle in results {
                 let totalPrice:Float = item.price * Float(item.itemCount)
                 totalPriceSum += totalPrice
             }

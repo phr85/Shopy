@@ -24,8 +24,8 @@
 		AB7775831E92426A00ABBDEB /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77757F1E92426A00ABBDEB /* UIViewController+Helpers.swift */; };
 		AB7775841E92426A00ABBDEB /* QueuedAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7775801E92426A00ABBDEB /* QueuedAlertPresenter.swift */; };
 		ABAD52AB1E900ABD00A58DAD /* index.json in Resources */ = {isa = PBXBuildFile; fileRef = ABAD52AA1E900ABD00A58DAD /* index.json */; };
-		ABAD52B01E900D1F00A58DAD /* SMArticle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */; };
-		ABAD52B11E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */; };
+		ABAD52B01E900D1F00A58DAD /* SMBasketArticle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AC1E900D1F00A58DAD /* SMBasketArticle+CoreDataClass.swift */; };
+		ABAD52B11E900D1F00A58DAD /* SMBasketArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AD1E900D1F00A58DAD /* SMBasketArticle+CoreDataProperties.swift */; };
 		ABAD52B21E900D1F00A58DAD /* SMProducts+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */; };
 		ABAD52B31E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */; };
 		ABAD52B71E9031D500A58DAD /* SYCheckoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD52B61E9031D500A58DAD /* SYCheckoutTableViewController.swift */; };
@@ -71,8 +71,8 @@
 		AB7775801E92426A00ABBDEB /* QueuedAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueuedAlertPresenter.swift; sourceTree = "<group>"; };
 		ABAD52621E90002900A58DAD /* ShopyAppModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ShopyAppModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		ABAD52AA1E900ABD00A58DAD /* index.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = index.json; sourceTree = "<group>"; };
-		ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMArticle+CoreDataClass.swift"; path = "../SMArticle+CoreDataClass.swift"; sourceTree = "<group>"; };
-		ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMArticle+CoreDataProperties.swift"; path = "../SMArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		ABAD52AC1E900D1F00A58DAD /* SMBasketArticle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMBasketArticle+CoreDataClass.swift"; path = "../SMBasketArticle+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ABAD52AD1E900D1F00A58DAD /* SMBasketArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMBasketArticle+CoreDataProperties.swift"; path = "../SMBasketArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMProducts+CoreDataClass.swift"; path = "../SMProducts+CoreDataClass.swift"; sourceTree = "<group>"; };
 		ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SMProducts+CoreDataProperties.swift"; path = "../SMProducts+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ABAD52B41E901B8000A58DAD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -254,8 +254,8 @@
 		ABD4339B1E8FF2CE006A9457 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				ABAD52AC1E900D1F00A58DAD /* SMArticle+CoreDataClass.swift */,
-				ABAD52AD1E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift */,
+				ABAD52AC1E900D1F00A58DAD /* SMBasketArticle+CoreDataClass.swift */,
+				ABAD52AD1E900D1F00A58DAD /* SMBasketArticle+CoreDataProperties.swift */,
 				ABAD52AE1E900D1F00A58DAD /* SMProducts+CoreDataClass.swift */,
 				ABAD52AF1E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift */,
 			);
@@ -471,7 +471,7 @@
 			files = (
 				AB14D78F1E8E72CF0040BC56 /* SYBasketTableViewController.swift in Sources */,
 				ABAD52B21E900D1F00A58DAD /* SMProducts+CoreDataClass.swift in Sources */,
-				ABAD52B01E900D1F00A58DAD /* SMArticle+CoreDataClass.swift in Sources */,
+				ABAD52B01E900D1F00A58DAD /* SMBasketArticle+CoreDataClass.swift in Sources */,
 				AB14D74F1E8E55770040BC56 /* AppDelegate.swift in Sources */,
 				ABAD52B71E9031D500A58DAD /* SYCheckoutTableViewController.swift in Sources */,
 				AB7775811E92426A00ABBDEB /* ActionSheetController.swift in Sources */,
@@ -480,7 +480,7 @@
 				AB14D7521E8E55770040BC56 /* ShopyAppModel.xcdatamodeld in Sources */,
 				ABAD52B91E92848700A58DAD /* SYHelpers.swift in Sources */,
 				ABAD52B31E900D1F00A58DAD /* SMProducts+CoreDataProperties.swift in Sources */,
-				ABAD52B11E900D1F00A58DAD /* SMArticle+CoreDataProperties.swift in Sources */,
+				ABAD52B11E900D1F00A58DAD /* SMBasketArticle+CoreDataProperties.swift in Sources */,
 				AB14D78A1E8E5B960040BC56 /* SYShopTableViewCell.swift in Sources */,
 				AB14D7851E8E5AE40040BC56 /* SYShopTableViewController.swift in Sources */,
 				ABD433991E8FEA2E006A9457 /* SYBasketTableViewCell.swift in Sources */,

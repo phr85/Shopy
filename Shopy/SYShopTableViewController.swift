@@ -77,7 +77,7 @@ class SYShopTableViewController: UITableViewController {
         let stepperIndexPath = IndexPath.init(row: sender.tag, section: 0)
         let item: SMProducts = self.dataSource.object(stepperIndexPath) as! SMProducts
         self.dataStack.performInNewBackgroundContext { backgroundContext in
-            let request:NSFetchRequest<SMArticle> = NSFetchRequest(entityName: "SMArticle")
+            let request:NSFetchRequest<SMBasketArticle> = NSFetchRequest(entityName: "SMBasketArticle")
             request.predicate = NSPredicate(format: "id ==[c] %@", item.id)
             var resultItem = try! backgroundContext.fetch(request)
             if resultItem.count > 0 {
@@ -87,7 +87,7 @@ class SYShopTableViewController: UITableViewController {
                     resultItem[0].setValue(sender.value, forKey: "itemCount")
                 }
             } else {
-                let entity = NSEntityDescription.entity(forEntityName: "SMArticle", in: backgroundContext)!
+                let entity = NSEntityDescription.entity(forEntityName: "SMBasketArticle", in: backgroundContext)!
                 let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
                 object.setValue(item.title, forKey: "title")
                 object.setValue(item.price, forKey: "price")
@@ -109,11 +109,11 @@ class SYShopTableViewController: UITableViewController {
     }
     
     func stepperValueFromBasketItem(_ prodId: String) -> Double {
-        let request:NSFetchRequest<SMArticle> = NSFetchRequest(entityName: "SMArticle")
+        let request:NSFetchRequest<SMBasketArticle> = NSFetchRequest(entityName: "SMBasketArticle")
         request.predicate = NSPredicate(format: "id ==[c] %@", prodId)
         var resultItem = try! self.dataStack.viewContext.fetch(request)
         if resultItem.count > 0 {
-            let item:SMArticle = resultItem[0]
+            let item:SMBasketArticle = resultItem[0]
             return Double(item.itemCount)
         }
         return 0

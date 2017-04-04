@@ -51,7 +51,7 @@ class SYBasketTableViewController: UITableViewController {
     
     @IBAction func emptyBasket(sender: UIBarButtonItem) {
         self.dataStack.performInNewBackgroundContext { backgroundContext in
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMBasketArticle")
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             do {
                 try backgroundContext.execute(batchDeleteRequest)
@@ -75,7 +75,7 @@ class SYBasketTableViewController: UITableViewController {
     // MARK: - Table view data source / DATASource
     
     lazy var dataSource: DATASource = {
-        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMBasketArticle")
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: SYShopTableViewCell.reuseIdentifier,
                                     fetchRequest: request, mainContext: self.dataStack.mainContext,

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-extension SMArticle {
+extension SMBasketArticle {
 
     @NSManaged public var itemCount: Int16
     @NSManaged public var title: String?

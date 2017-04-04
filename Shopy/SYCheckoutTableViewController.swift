@@ -39,6 +39,7 @@ class SYCheckoutTableViewController: UIViewController {
     private func setup() {
         setupBasketTableViewCell()
         setupTableView()
+        setupTotalPriceLabel()
     }
     
     private func setupBasketTableViewCell() {
@@ -48,6 +49,22 @@ class SYCheckoutTableViewController: UIViewController {
     
     private func setupTableView() {
         self.tableView.dataSource = self.dataSource
+    }
+    
+    private func setupTotalPriceLabel() {
+        self.totalPrice = 0
+        let request:NSFetchRequest<SMBasketArticle> = NSFetchRequest(entityName: "SMBasketArticle")
+        let results = try! self.dataStack.viewContext.fetch(request)
+        
+        for item:SMBasketArticle in results {
+            let convertedPrice: Float =
+                SYHelpers.totalItemPrice(item.value(forKey: "price") as! Float,
+                                         numberOfItems: item.value(forKey: "itemCount") as! Int,
+                                         exchangeRate: self.exchangeRate)
+            self.totalPrice += convertedPrice
+        }
+        
+        self.totalPriceLabel.text = String(format: "Total Price: %@ %.2f", self.selectedCurrency, self.totalPrice)
     }
     
     // MARK: - Actions
@@ -63,7 +80,7 @@ class SYCheckoutTableViewController: UIViewController {
     
     @IBAction func orderNow(sender: UIBarButtonItem) {
         self.dataStack.performInNewBackgroundContext { backgroundContext in
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMBasketArticle")
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             do {
                 try backgroundContext.execute(batchDeleteRequest)
@@ -89,8 +106,9 @@ class SYCheckoutTableViewController: UIViewController {
                 self.selectedCurrency = self.pickerViewDataSourceAndDelegate.pickerView!(
                     pickerView, titleForRow: pickerView.selectedRow(inComponent: 0), forComponent: 0)!
                 self.exchangeRate = self.getExchangeRate()
-                self.dataSource.fetch()
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.reloadData()
+                }
             }
         }
         let cancelAction = ActionSheetControllerAction(
@@ -124,16 +142,17 @@ class SYCheckoutTableViewController: UIViewController {
         return 1.0
     }
     
-    func displayTotalPriceLabel() {
-        self.totalPriceLabel.text = String(format: "Total Price: %@ %.2f", self.selectedCurrency, self.totalPrice)
+    private func reloadData() {
+        self.dataSource.fetch()
+        self.tableView.reloadData()
+        self.setupTotalPriceLabel()
     }
     
     // MARK: - Table view data source / DATASource
     
     lazy var dataSource: DATASource = {
-        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMArticle")
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SMBasketArticle")
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        self.totalPrice = 0
         let dataSource = DATASource(tableView: self.tableView, cellIdentifier: SYShopTableViewCell.reuseIdentifier,
                                     fetchRequest: request, mainContext: self.dataStack.mainContext,
                                     configuration: { cell, item, indexPath in
@@ -143,10 +162,6 @@ class SYCheckoutTableViewController: UIViewController {
                                             SYHelpers.totalItemPrice(item.value(forKey: "price") as! Float,
                                                                 numberOfItems: item.value(forKey: "itemCount") as! Int,
                                                                 exchangeRate: self.exchangeRate)
-                                        DispatchQueue.main.async {
-                                            self.totalPrice += convertedPrice
-                                            self.displayTotalPriceLabel()
-                                        }
                                         cell.detailTextLabel?.text =
                                             String(format: "%@ %.2f for %i Items",
                                                    self.selectedCurrency,
