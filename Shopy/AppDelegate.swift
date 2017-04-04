@@ -14,10 +14,14 @@ import DATAStack
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
-    var window: UIWindow?
+    // MARK: - Properties
     
+    var window: UIWindow?
     let dataStack = DATAStack(modelName:"ShopyAppModel")
     
+    
+    // MARK: - Initialization / UIApplicationDelegate
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.updateBasketBadge()
